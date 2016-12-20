@@ -11,12 +11,14 @@ namespace BlockChain.WPF.Services {
         readonly BlockContainer _block;
         readonly MessageCollection _messages;
 
-        public void Execute(string txIds){
+        public void Execute(string txId) {
+
+            txId = txId.Trim('\r', '\n');
 
             _messages.NewLine();
             _messages.Add("Walking Transaction");
 
-            var addresses = _block.WalkAddresses(txIds);
+            var addresses = _block.WalkAddresses(txId);
 
             if (addresses == null){
                 _messages.Add("Transaction not found");

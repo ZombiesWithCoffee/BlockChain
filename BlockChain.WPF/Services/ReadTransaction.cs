@@ -15,6 +15,8 @@ namespace BlockChain.WPF.Services {
 
         public void Execute(string txId){
 
+            txId = txId.Trim('\r', '\n');
+
             var transaction = _blocks[txId];
 
             if (transaction == null) {

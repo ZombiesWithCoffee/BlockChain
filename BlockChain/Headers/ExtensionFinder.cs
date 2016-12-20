@@ -32,17 +32,6 @@ namespace BlockChain.Headers {
                 }
             }
 
-            /*
-            // Test if this is mostly text
-
-            var letters = Text.Count(data => char.IsLetterOrDigit(data) || char.IsSeparator(data));
-
-            if ((float) letters/Data.Length > 0.75){
-                return ".txt";
-            }
-            */
-
-
             return "dat";
         }
     }

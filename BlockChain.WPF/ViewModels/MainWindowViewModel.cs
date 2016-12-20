@@ -207,6 +207,16 @@ namespace BlockChain.WPF.ViewModels {
             new QueryTextMessages(Blocks, Messages).Execute();
         });
 
+        public ICommand QueryBase64 => new RelayCommand(async() => {
+
+            var openBlocksDialog = new OpenBlocksDialog();
+
+            if (openBlocksDialog.ShowDialog() == false)
+                return;
+
+            await new QueryBase64Messages(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+        });
+
 
         public ICommand QuerySeveralTxOutsFile => new RelayCommand(() => {
             new QuerySeveralTxOuts(Blocks, Messages).Execute();

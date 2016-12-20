@@ -81,6 +81,7 @@
             <MenuItem Header="_Query">
                 <MenuItem Header="Text Messages" Command="{Binding QueryTextMessages}"/>
                 <MenuItem Header="Excessive TxOuts" Command="{Binding QuerySeveralTxOutsFile}"/>
+                <MenuItem Header="Base64 Messages" Command="{Binding QueryBase64}"/>
             </MenuItem>
 
             <MenuItem Header="_Download">
