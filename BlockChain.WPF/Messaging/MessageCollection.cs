@@ -7,7 +7,7 @@ namespace BlockChain.WPF.Messaging {
     public class MessageCollection : ObservableCollection<Message> {
 
         public void NewLine(){
-            Add(Environment.NewLine);
+            Add(string.Empty);
         }
         
         public void Add(string text, MessageType messageType = MessageType.Normal){

@@ -53,6 +53,8 @@ namespace BlockChain.WPF.Services {
                             case "dat":
                                 break;
 
+                            case "gif":
+                            case "jpg":
                             case "png":
                                 var data = transaction.GetFileBytes();
 
