@@ -1,16 +1,19 @@
 ﻿using System.IO;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
     public class DownloadFile{
 
-        public DownloadFile(BlockContainer block){
+        public DownloadFile(BlockContainer block, MessageCollection messages){
             _block = block;
+            _messages = messages;
         }
 
         readonly BlockContainer _block;
+        readonly MessageCollection _messages;
 
-        public string Download(string[] txIds) {
+        public void Download(string[] txIds) {
 
             var fileData = _block.GetFile(txIds);
             var fileName = Path.Combine(Settings.Default.OutputPath, Path.ChangeExtension(txIds[0], fileData.Extension));
@@ -18,7 +21,7 @@ namespace BlockChain.WPF.Services {
             File.Delete(fileName);
             File.WriteAllBytes(fileName, fileData.Data);
 
-            return fileName;
+            _messages.Add($"File saved to {fileName}");
         }
     }
 }

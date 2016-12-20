@@ -47,17 +47,10 @@ namespace BlockChain.WPF.ViewModels {
             try{
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                Blocks.Clear();
-
-                foreach (var file in openFileDialog.FileNames){
-                    Messages.Add($"Opening file {Path.GetFileNameWithoutExtension(file)} ", MessageType.Heading);
-                    await Blocks.Add(file);
-                    Blocks.JoinInsAndOuts();
-                }
+                await new OpenFiles(Blocks, Messages).Execute(openFileDialog.FileNames);
             }
             finally{
                 Mouse.OverrideCursor = Cursors.Arrow;
-                Messages.Add("Opening file complete", MessageType.Heading);
             }
         });
 
@@ -71,8 +64,7 @@ namespace BlockChain.WPF.ViewModels {
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var readTransaction = new ReadTransaction(Blocks, Messages);
-                readTransaction.Execute(openTransactionDialog.ViewModel.Transaction);
+                new ReadTransaction(Blocks, Messages).Execute(openTransactionDialog.ViewModel.Transaction);
             }
             catch (Exception ex) {
                 Messages.Add($"Exception: {ex.Message}", MessageType.Error);
@@ -89,22 +81,10 @@ namespace BlockChain.WPF.ViewModels {
             if (openTransactionDialog.ShowDialog() == false)
                 return;
 
-            Messages.NewLine();
-            Messages.Add("Walking Transaction");
-
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var addresses = Blocks.WalkAddresses(openTransactionDialog.ViewModel.Transaction);
-
-                if (addresses == null) {
-                    Messages.Add("Transaction not found");
-                    return;
-                }
-
-                foreach (var result in addresses){
-                    Messages.Add($"{result}");
-                }
+                new WalkAddress(Blocks, Messages).Execute(openTransactionDialog.ViewModel.Transaction);
             }
             catch (Exception ex) {
                 Messages.Add($"Exception: {ex.Message}", MessageType.Error);
@@ -124,10 +104,7 @@ namespace BlockChain.WPF.ViewModels {
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var downloadFile = new DownloadFile(Blocks);
-                var fileName = downloadFile.Download(openTransactionDialog.ViewModel.Transaction.Split('\r', '\n'));
-
-                Messages.Add($"File saved to {fileName}");
+                new DownloadFile(Blocks, Messages).Download(openTransactionDialog.ViewModel.Transaction.Split('\r', '\n'));
             }
             catch (Exception ex) {
                 Messages.Add(ex.Message, MessageType.Error);
@@ -147,10 +124,7 @@ namespace BlockChain.WPF.ViewModels {
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var downloadSatoshi = new DownloadSatoshi(Blocks);
-                var fileName = downloadSatoshi.Download(openTransactionDialog.ViewModel.Transaction);
-
-                Messages.Add($"File saved to {fileName}");
+                new DownloadSatoshi(Blocks, Messages).Download(openTransactionDialog.ViewModel.Transaction);
             }
             catch (InvalidDataException ex) {
                 Messages.Add(ex.Message, MessageType.Error);
@@ -167,11 +141,10 @@ namespace BlockChain.WPF.ViewModels {
             if (openBlocksDialog.ShowDialog() == false)
                 return;
 
-            var knownExtensions = new KnownExtensions(Messages);
-
             try{
                 Mouse.OverrideCursor = Cursors.Wait;
-                await knownExtensions.Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+
+                await new KnownExtensions(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
             }
             finally{
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -185,11 +158,10 @@ namespace BlockChain.WPF.ViewModels {
             if (openBlocksDialog.ShowDialog() == false)
                 return;
 
-            var knownExtensions = new HighFees(Messages);
-
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await knownExtensions.Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+
+                await new HighFees(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -203,11 +175,10 @@ namespace BlockChain.WPF.ViewModels {
             if (openBlocksDialog.ShowDialog() == false)
                 return;
 
-            var satoshiUploads = new SatoshiUploads(Messages);
-
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await satoshiUploads.Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+
+                await new SatoshiUploads(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -221,11 +192,10 @@ namespace BlockChain.WPF.ViewModels {
             if (openTransactionDialog.ShowDialog() == false)
                 return;
 
-            var searchTransactions = new SearchTransactionId(Messages);
-
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await searchTransactions.Search(openTransactionDialog.ViewModel.Transaction, 2, 706);
+
+                await new SearchTransactionId(Messages).Search(openTransactionDialog.ViewModel.Transaction, 2, 706);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -234,45 +204,12 @@ namespace BlockChain.WPF.ViewModels {
 
 
         public ICommand QueryTextMessages => new RelayCommand(() => {
-
-            Messages.NewLine();
-            Messages.Add("Searching for text messages");
-
-            foreach (var block in Blocks) {
-                foreach (var transaction in block.Transactions){
-
-                    var fileData = Blocks.GetFile(transaction.ToString());
-
-                    if (fileData == null){
-                        continue;
-                    }
-
-                    if (fileData.Extension == ".txt"){
-                        Messages.Add($"{transaction} - {fileData.Text}");
-                    }
-                }
-            }
+            new QueryTextMessages(Blocks, Messages).Execute();
         });
 
 
         public ICommand QuerySeveralTxOutsFile => new RelayCommand(() => {
-            Messages.NewLine();
-            Messages.Add("Finding Transactions that have a high number of TxOut Transaction");
-
-            foreach (var block in Blocks) {
-                foreach (var transaction in block.Transactions) {
-
-                    if (transaction.Outs.Unique < 30){
-                        continue;
-                    }
-
-                    if (transaction.Outs.SpentCount > 2){
-                        continue;
-                    }
-
-                    Messages.Add($"{transaction} - {transaction.Outs.Count}");
-                }
-            }
+            new QuerySeveralTxOuts(Blocks, Messages).Execute();
         });
     }
 }

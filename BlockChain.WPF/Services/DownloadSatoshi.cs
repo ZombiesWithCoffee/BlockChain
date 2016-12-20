@@ -1,16 +1,19 @@
 ﻿using System.IO;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
     public class DownloadSatoshi{
 
-        public DownloadSatoshi(BlockContainer block){
+        public DownloadSatoshi(BlockContainer block, MessageCollection messages){
             _block = block;
+            _messages = messages;
         }
 
         readonly BlockContainer _block;
+        readonly MessageCollection _messages;
 
-        public string Download(string txId) {
+        public void Download(string txId) {
 
             var fileData = _block.GetSatoshiUploadedFile(txId);
 
@@ -25,7 +28,7 @@ namespace BlockChain.WPF.Services {
             File.Delete(fileName);
             File.WriteAllBytes(fileName, fileData.Data);
 
-            return fileName;
+            _messages.Add($"File saved to {fileName}");
         }
     }
 }
