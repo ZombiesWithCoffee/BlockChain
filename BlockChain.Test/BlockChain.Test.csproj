@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1095C749-C6E6-4978-BEB9-C111C44DA1DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlockChain.Test</RootNamespace>
+    <AssemblyName>BlockChain.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <None Include="7z\cablegate_2.7z" />
+    <None Include="Python\blockchain_downloader.py" />
+    <None Include="Python\file-bitcoin-insertion-tool.py" />
+    <Content Include="Documentation\Images.txt" />
+    <Content Include="Examples\27df2008c82bef26ac96f0872b75958a0870f3a92375c4654b126077072ddd6e.txt" />
+    <Content Include="Examples\4c65a89668ef6d069997861458bb47a3549654649e2930e005cd5d031581a2a0.txt" />
+    <Content Include="Examples\ae5c3b7ac323bebad08ffeee3e302a7622d3e8d61ca82edcfcb49648df0c1604.txt" />
+    <Content Include="Examples\bb5a21a3b563df859f94fed84179d922d1e4ea292179f8911824fa248b198093.txt" />
+    <Content Include="Examples\Insurance.txt" />
+    <Compile Include="AddressTest.cs" />
+    <Compile Include="Base56DecoderTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Python\Satoshi-Downloader.py" />
+    <None Include="Python\Satoshi-Uploader.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Python\bitcoin-file-downloader.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\9090-addresses.txt" />
+    <Content Include="Documentation\9090-transactions.txt" />
+    <Content Include="Documentation\BitcoinWhitepapers.txt" />
+    <Content Include="Documentation\cablegate-addresses.txt" />
+    <Content Include="Documentation\ChecksumExplanation.txt" />
+    <Content Include="Documentation\Doc Header.txt" />
+    <Content Include="Examples\Cablegate.txt" />
+    <Content Include="Examples\Dog.txt" />
+    <Content Include="Examples\Mandela.txt" />
+    <Content Include="Examples\Second.txt" />
+    <Content Include="Images\Dog.bmp" />
+    <None Include="Documentation\DogBytes.dat" />
+    <Content Include="Documentation\DogBytes.txt" />
+    <Content Include="Documentation\pgp.txt" />
+    <Content Include="Documentation\python tests.txt" />
+    <Content Include="Documentation\TorrentTransactions.txt" />
+    <Content Include="Documentation\wikileaks-addresses.txt" />
+    <Content Include="Documentation\WLtxdump.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlockChain\BlockChain.csproj">
+      <Project>{a82a7278-b551-4039-9aa0-cf5fb3bdcc05}</Project>
+      <Name>BlockChain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

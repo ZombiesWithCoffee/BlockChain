@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5ABDFBE4-C146-416B-A21C-A1150E161F4B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlockChain.WPF</RootNamespace>
+    <AssemblyName>BlockChain.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Dialogs\SettingsDialog.xaml.cs">
+      <DependentUpon>SettingsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OpenBlocksDialog.xaml.cs">
+      <DependentUpon>OpenBlocksDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OpenTransactionsDialog.xaml.cs">
+      <DependentUpon>OpenTransactionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SetBindingExtension.cs" />
+    <Compile Include="Services\HighFees.cs" />
+    <Compile Include="Services\ReadTransaction.cs" />
+    <Compile Include="Services\SearchTransactionId.cs" />
+    <Compile Include="Services\SatoshiUploads.cs" />
+    <Compile Include="Services\KnownExtensions.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\OpenBlocksViewModel.cs" />
+    <Compile Include="ViewModels\OpenTransactionsViewModel.cs" />
+    <Page Include="Dialogs\SettingsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\OpenBlocksDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\OpenTransactionsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Abstract\IMainWindowViewModel.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Addresses\Block515.dat" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Back-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Forward-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Refresh-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Settings-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlockChain\BlockChain.csproj">
+      <Project>{A82A7278-B551-4039-9AA0-CF5FB3BDCC05}</Project>
+      <Name>BlockChain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Cablegate.7z.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\This is Dog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\BitcoinIcon.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Rickroll.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Nelson Mandela.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\BlockChain.pdf.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Block460.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Block463.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\b25ba2080d15c1277569bd2fee707a216c4e2ee0a1f479349c2309651c261511.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Block702.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Block703.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Kanye Proof Of Life!.txt" />
+    <Resource Include="Addresses\Illegal Primes.txt" />
+    <Resource Include="Addresses\Time Traveler.txt" />
+    <Resource Include="Addresses\Poem.txt" />
+    <Resource Include="Addresses\OnShape.png.txt" />
+    <Resource Include="Addresses\TestTx.txt" />
+    <Resource Include="Addresses\Cryptograffiti\Dr Bill Maurer.txt" />
+    <Resource Include="Addresses\Cryptograffiti\de351e65528031f4a2ea9256f04b472671fd9f36a52b41a1f6b35031fd31054a.txt" />
+    <Resource Include="Addresses\Cryptograffiti\d16c05643b1751fa1b80bb142b383b6d1191f5a296f1dd6d3c52182e02066446.txt" />
+    <Resource Include="Addresses\Cryptograffiti\82dbd2c8ea87238628da2881a685cd5f693517fd87398e5b4db738b6ef266d32.txt" />
+    <Resource Include="Addresses\Cryptograffiti\d799335c809966eb7c3b0ddf981e9f9a561b4341a64b92ca25c765565a784879.txt" />
+    <Resource Include="Addresses\Cryptograffiti\39988aaa09a648dde2ce9f270658c9d434b01adba9d119e917172c0258f13d9a.txt" />
+    <Resource Include="Addresses\Cryptograffiti\ad62a0e16e8a0b1e12cf80ff66926310a187da52757b90d40ebd2cafdaa01622.txt" />
+    <Resource Include="Addresses\Cryptograffiti\4afbe1341bfd4bf1f3a65f9c1398dea6e723a84f5893925cea5d7cd76f0bb18b.txt" />
+    <Resource Include="Addresses\Cryptograffiti\66f169fc20790d6294b07ba4d386747ecbe8aa4f9538a8d6e3ce65d8aba89b4a.txt" />
+    <Resource Include="Addresses\Cryptograffiti\735887d52f0ef0254bb796915a95d60eab896334d803f7269b8b46140719495a.txt" />
+    <Resource Include="Addresses\Cryptograffiti\693848d56098a0ad16736bea7f24336c9b47a7f0a6f776659e8d01f00b46af76.txt" />
+    <Resource Include="Addresses\Cryptograffiti\cc9c0b95ac772515235147d8354ec8b8b0763bf842ad16b8b23f855c3dc6a57e.txt" />
+    <Resource Include="Addresses\Cryptograffiti\0b08ad8a6d8242d13639bd07a4ac406ad4dce5448f4b5abf2a871ab89e820483.txt" />
+    <Content Include="Addresses\Wedding.jpg.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Addresses\Letter.jpg.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

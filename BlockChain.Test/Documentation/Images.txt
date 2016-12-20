@@ -1,0 +1,10 @@
+﻿The messaging system references "AtomSea & EMBII", who I assume are the creators. 
+The chain started with address 12KPNWdQ3sesPzMGHLMHrWbSkZvaeKZgHt with 0.269 BTC on 2013-12-01 23:54:35 
+Each output is 0.000055 bitcoins, just over the current network minimum of .0000546 bitcoin. 
+The next transaction in the chain can be found by looking at each change address, 
+which pays for the next block. 
+The chain ended when it ran out of bitcoins, at address 1DQwj8BDLWy9BMzX8uUcDYze3hx8q7uBy4.
+
+In total, the data chain has 85KB of data including images, random quotes, and HTML. 
+The system embeds filenames, lengths, and the data. 
+There are also a lot of transaction ids stored in the data, presumably serving as an index.

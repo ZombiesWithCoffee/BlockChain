@@ -1,0 +1,67 @@
+﻿<Window x:Class="BlockChain.WPF.Dialogs.SettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:viewModels="clr-namespace:BlockChain.WPF.ViewModels"
+        mc:Ignorable="d" 
+        Title="Read Transaction"
+        WindowStartupLocation="CenterScreen"
+        Height="300" 
+        Width="600"
+        FontSize="18"
+        d:DataContext ="{d:DesignInstance {x:Type viewModels:SettingsViewModel}, IsDesignTimeCreatable=True}"  
+        >
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="GroupBox"  BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Margin" Value="3 13 3 3"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="Border" BorderThickness="3" CornerRadius="9" BorderBrush="Black" Margin="5" Padding="10" Background="AntiqueWhite">
+        <Grid Margin="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold">Settings</Label>
+            <Label Grid.Row="1" Grid.Column="0"  Content="Data File Location:"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=InputPath}" Margin="3"  />
+            <Label Grid.Row="2" Grid.Column="0"  Content="Export Location:"></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=OutputPath}" Margin="3" />
+
+            <Grid Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Button Content="OK" IsDefault="True" Grid.Column="0" Click="OK_Click"/>
+                <Button Content="Cancel" IsCancel="True" Grid.Column="1"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A82A7278-B551-4039-9AA0-CF5FB3BDCC05}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlockChain</RootNamespace>
+    <AssemblyName>BlockChain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Crc32.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crc32.NET.1.0.2\lib\net20\Crc32.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base58.cs" />
+    <Compile Include="Headers\ExtensionFinder.cs" />
+    <Compile Include="Headers\7z.cs" />
+    <Compile Include="Headers\Doc.cs" />
+    <Compile Include="Headers\GZip.cs" />
+    <Compile Include="Headers\Xls.cs" />
+    <Compile Include="Headers\Jpg.cs" />
+    <Compile Include="Headers\Pdf2.cs" />
+    <Compile Include="Headers\Pdf1.cs" />
+    <Compile Include="Headers\Tar.cs" />
+    <Compile Include="Headers\TarGz.cs" />
+    <Compile Include="Headers\Zip.cs" />
+    <Compile Include="Headers\IExtensions.cs" />
+    <Compile Include="Headers\Gif.cs" />
+    <Compile Include="Headers\Png.cs" />
+    <Compile Include="TransactionInContainer.cs" />
+    <Compile Include="TransactionOutContainer.cs" />
+    <Compile Include="Enums\Op.cs" />
+    <Compile Include="FileData.cs" />
+    <Compile Include="TransactionContainer.cs" />
+    <Compile Include="BlockContainer.cs" />
+    <Compile Include="Enums\Network.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Extensions\HexExtensions.cs" />
+    <Compile Include="FileLength.cs" />
+    <Compile Include="Headers\HeaderList.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="ByteArray.cs" />
+    <Compile Include="LockTime.cs" />
+    <Compile Include="BitcoinValue.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="Block.cs" />
+    <Compile Include="OutPoint.cs" />
+    <Compile Include="SignatureScript.cs" />
+    <Compile Include="PublicKeyScript.cs" />
+    <Compile Include="TransactionOut.cs" />
+    <Compile Include="TransactionIn.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\note.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

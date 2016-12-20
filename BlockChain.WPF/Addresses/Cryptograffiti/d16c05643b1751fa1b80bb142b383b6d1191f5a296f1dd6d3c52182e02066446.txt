@@ -1,0 +1,17 @@
+﻿d16c05643b1751fa1b80bb142b383b6d1191f5a296f1dd6d3c52182e02066446
+
+10thjuly2016 name:TERPENE MIXING  (4th dimension 1985) smellaroma
+process has been in development since jan 2013 to mix terpenes and dispense them in amounts as small as 3 picolitres.
+technology uses high frequency ceramic cartridge similar to inkjet printer cartridge.
+software control is 8bit per terpene giving 255 levels and is mixed similar to rgb colour mixing.
+example..62% pinene, 27% myrcene and 11% limonene would have an rgb ratio as 158:69:28 and
+would dispense pine resin.billions of combinations are possible with a 6 cartridge system.
+any cannabis terpene profile can be recreated as opensource data is available for most cultivars.
+the hardware device is currently as big as an inkjet printer but size will be reduced.
+it will now be possible to email a bunch of roses and when the recipient opens the email
+they will get a smell of roses dispensed immediately,or a sample of perfume,wine,cheese etc
+now you can smell before you buy.
+BTC Donations appreciated to 19YoAYm3TzJbkosfu33kWmhadttLADx6Jx.
+anyone donating however small will receive generous discount off hardware smellaroma
+email colinterp@gmail.com
+

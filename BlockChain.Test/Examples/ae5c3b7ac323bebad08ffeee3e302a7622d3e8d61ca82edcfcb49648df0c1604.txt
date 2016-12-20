@@ -1,0 +1,56 @@
+﻿
+getrawtransaction ae5c3b7ac323bebad08ffeee3e302a7622d3e8d61ca82edcfcb49648df0c1604
+
+decoderawtransaction "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff25033a8103040000c498124d696e656420627920425443204775696c640800004149000036e6ffffffff01ee551998000000001976a91427a1f12771de5cc3b73941664b2537c15316be4388ac00000000"
+
+{
+  "txid": "ae5c3b7ac323bebad08ffeee3e302a7622d3e8d61ca82edcfcb49648df0c1604",
+  "hash": "ae5c3b7ac323bebad08ffeee3e302a7622d3e8d61ca82edcfcb49648df0c1604",
+  "size": 122,
+  "vsize": 122,
+  "version": 1,
+  "locktime": 0,
+  "vin": [
+    {
+      "coinbase": "033a8103040000c498124d696e656420627920425443204775696c640800004149000036e6",
+      "sequence": 4294967295
+    }
+  ],
+  "vout": [
+    {
+      "value": 25.51797230,
+      "n": 0,
+      "scriptPubKey": {
+        "asm": "OP_DUP OP_HASH160 27a1f12771de5cc3b73941664b2537c15316be43 OP_EQUALVERIFY OP_CHECKSIG",
+        "hex": "76a91427a1f12771de5cc3b73941664b2537c15316be4388ac",
+        "reqSigs": 1,
+        "type": "pubkeyhash",
+        "addresses": [
+          "14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer"
+        ]
+      }
+    }
+  ]
+}
+
+25.5179723 BTC
+
+Size	122 (bytes)
+Received Time	2013-04-04 19:32:17
+Reward From Block	229690 
+Scripts	Hide scripts & coinbase
+Relayed by IP 	5.9.110.78 (whois)
+Visualize	View Tree Chart
+
+CoinBase
+033a8103040000c498124d696e656420627920425443204775696c640800004149000036e6 
+
+Output Scripts
+OP_DUP OP_HASH160 27a1f12771de5cc3b73941664b2537c15316be43 OP_EQUALVERIFY OP_CHECKSIG 
+
+https://blockchain.info/tx/ae5c3b7ac323bebad08ffeee3e302a7622d3e8d61ca82edcfcb49648df0c1604
+https://blockchain.info/address/14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer
+
+Summary
+Address	14cZMQk89mRYQkDEj8Rn25AnGoBi5H6uer
+Hash 160	27a1f12771de5cc3b73941664b2537c15316be43

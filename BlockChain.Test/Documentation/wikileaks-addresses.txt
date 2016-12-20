@@ -1,0 +1,10 @@
+﻿1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v
+
+From Smash: d3c1cbcce82f3bde0537f82a55f3b8458cb50d632977f85c81dad3e1983a3348638f5c
+
+we just found it
+we jsut found it
+d3c1cbcce82f3bde0537f82a55f3b8458cb50d632977f85c81dad3e1983a3348638f5c
+look that up and download it
+save it as tar.gz
+open it in bash with gpg
