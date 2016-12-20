@@ -21,28 +21,35 @@
         
         <DataTemplate x:Key="NormalTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding Text}" FontWeight="Bold" />
+                <TextBlock Text="{Binding Text}" FontSize="12" />
             </StackPanel>
         </DataTemplate>
         
-        <DataTemplate x:Key="BlockTemplate">
+        <DataTemplate x:Key="HeadingTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding Text}" FontWeight="Bold" Foreground="Green" />
+                <TextBlock Text="{Binding Text}" FontSize="14" FontWeight="Bold" Foreground="Green" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding Text}" />
+                <TextBlock Text="{Binding Text}" FontSize="12" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="ErrorTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding Text}" Foreground="Red"/>
+                <TextBlock Text="{Binding Text}" FontSize="12" Foreground="Red"/>
             </StackPanel>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="ImageTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Text}" FontSize="12"/>
+                <Image Source="{Binding ImageSource}" MaxHeight="100"/>
+            </StackPanel>
+        </DataTemplate>
+
     </Window.Resources>
 
     <DockPanel>
@@ -84,8 +91,7 @@
 
         <Grid DockPanel.Dock="Top">
 
-            <ListView FontSize="12" 
-                      ItemsSource="{Binding Messages}" 
+            <ListView ItemsSource="{Binding Messages}" 
                       Padding="5"
                       SelectionChanged="Selector_OnSelectionChanged">
                 
@@ -98,15 +104,18 @@
                                         <DataTrigger Binding="{Binding MessageType}" Value="Normal">
                                             <Setter Property="ContentTemplate" Value="{StaticResource NormalTemplate}" />
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding MessageType}" Value="Block">
-                                            <Setter Property="ContentTemplate" Value="{StaticResource BlockTemplate}" />
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Heading">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource HeadingTemplate}" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MessageType}" Value="Transaction">
                                             <Setter Property="ContentTemplate" Value="{StaticResource TransactionTemplate}" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MessageType}" Value="Error">
                                             <Setter Property="ContentTemplate" Value="{StaticResource ErrorTemplate}" />
-                                        </DataTrigger>                                        
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Image">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource ImageTemplate}" />
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </ContentControl.Style>

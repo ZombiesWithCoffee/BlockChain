@@ -1,9 +1,10 @@
 ﻿namespace BlockChain.WPF.Messaging {
 
     public enum MessageType {
-        Block,
+        Heading,
         Transaction,
         Normal,
-        Error
+        Error,
+        Image
     }
 }

@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
+
     public class KnownExtensions{
 
         public KnownExtensions(MessageCollection messages) {
@@ -19,14 +22,14 @@ namespace BlockChain.WPF.Services {
 
         public async Task Search(int start, int stop){
 
-            _messages.Add($"{Environment.NewLine}");
-            _messages.Add("Searching for Known Extensions");
+            _messages.NewLine();
+            _messages.Add("Searching for Known Extensions", MessageType.Heading);
 
-            for (var blockNumber = start; blockNumber < stop; blockNumber++) {
+            for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
 
                 var fileName = Path.Combine(Settings.Default.InputPath, $"blk{blockNumber:D5}.dat");
 
-                _messages.Add($"File: {Path.GetFileNameWithoutExtension(fileName)}", MessageType.Block);
+                _messages.Add($"File: {Path.GetFileNameWithoutExtension(fileName)}", MessageType.Heading);
 
                 if (Path.GetFileName(fileName) == "blk00000.dat") {
                     continue;
@@ -44,16 +47,69 @@ namespace BlockChain.WPF.Services {
                             continue;
                         }
 
-                        if (fileData.Extension != ".dat"){
-                            _messages.Add($"{fileData.Extension}: {transaction}");
-                        }
+                        var message = $"{fileData.Extension}: {transaction}";
 
-              //          if (fileData.Extension == ".txt"){
-              //              _messages.Add(Encoding.ASCII.GetString(fileData.Data));
-              //          }
+                        switch (fileData.Extension){
+                            case "dat":
+                                break;
+
+                            case "png":
+                                var data = transaction.GetFileBytes();
+
+                                try{
+                                    var imageSource = GetImageSource(data);
+                                    _messages.Add(message, imageSource);
+                                }
+                                catch{
+                                    _messages.Add(message);
+                                }
+
+                                break;
+
+                            case "txt":
+                                _messages.Add(message);
+                                _messages.Add(Encoding.ASCII.GetString(fileData.Data));
+                                break;
+
+                            default:
+                                _messages.Add(message);
+                                break;
+                        }
                     }
                 }
             }
+
+            _messages.Add("Search Complete", MessageType.Heading);
+        }
+
+        static readonly ImageConverter ImageConverter = new ImageConverter();
+
+        public ImageSource GetImageSource(byte[] data) {
+            using (Stream stream = new MemoryStream(data)){
+                stream.Position = 0;
+
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = stream;
+                image.EndInit();
+                image.Freeze();
+
+                return image;
+            }
+        }
+
+        public static Bitmap GetImageFromByteArray(byte[] byteArray) {
+            var bm = (Bitmap)ImageConverter.ConvertFrom(byteArray);
+
+            if (bm != null && (bm.HorizontalResolution != (int)bm.HorizontalResolution || bm.VerticalResolution != (int)bm.VerticalResolution)) {
+                // Correct a strange glitch that has been observed in the test program when converting 
+                //  from a PNG file image created by CopyImageToByteArray() - the dpi value "drifts" 
+                //  slightly away from the nominal integer value
+                bm.SetResolution((int)(bm.HorizontalResolution + 0.5f), (int)(bm.VerticalResolution + 0.5f));
+            }
+
+            return bm;
         }
     }
 }

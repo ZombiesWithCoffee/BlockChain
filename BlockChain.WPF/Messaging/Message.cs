@@ -1,4 +1,6 @@
-﻿namespace BlockChain.WPF.Messaging {
+﻿using System.Windows.Media;
+
+namespace BlockChain.WPF.Messaging {
 
     public class Message {
 
@@ -11,7 +13,15 @@
             MessageType = messageType;
         }
 
+        public Message(string text, ImageSource imageSource, MessageType messageType = MessageType.Image) {
+            Text = text;
+            ImageSource = imageSource;
+            MessageType = messageType;
+        }
+
         public string Text { get; set; }
+        public ImageSource ImageSource { get; set; }
+
         public MessageType MessageType { get; set; }
     }
 }

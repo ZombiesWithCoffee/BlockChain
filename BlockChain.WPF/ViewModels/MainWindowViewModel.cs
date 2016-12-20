@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -90,7 +89,7 @@ namespace BlockChain.WPF.ViewModels {
             if (openTransactionDialog.ShowDialog() == false)
                 return;
 
-            Messages.Add($"{Environment.NewLine}");
+            Messages.NewLine();
             Messages.Add("Walking Transaction");
 
             try {
@@ -236,7 +235,7 @@ namespace BlockChain.WPF.ViewModels {
 
         public ICommand QueryTextMessages => new RelayCommand(() => {
 
-            Messages.Add($"{Environment.NewLine}");
+            Messages.NewLine();
             Messages.Add("Searching for text messages");
 
             foreach (var block in Blocks) {
@@ -257,7 +256,7 @@ namespace BlockChain.WPF.ViewModels {
 
 
         public ICommand QuerySeveralTxOutsFile => new RelayCommand(() => {
-            Messages.Add($"{Environment.NewLine}");
+            Messages.NewLine();
             Messages.Add("Finding Transactions that have a high number of TxOut Transaction");
 
             foreach (var block in Blocks) {

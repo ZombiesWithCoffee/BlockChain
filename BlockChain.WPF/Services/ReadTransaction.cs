@@ -22,12 +22,12 @@ namespace BlockChain.WPF.Services {
                 return;
             }
 
-            _messages.Add($"{Environment.NewLine}");
+            _messages.NewLine();
             _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
             _messages.Add($"Fee Amount: {transaction.Fees}");
             _messages.Add($"Fee Per Out: {transaction.FeePerOut}");
 
-            _messages.Add($"{Environment.NewLine}");
+            _messages.NewLine();
             _messages.Add("In Transactions");
             _messages.Add($"In Amount: {transaction.Ins.Amount}");
 
@@ -35,7 +35,7 @@ namespace BlockChain.WPF.Services {
                 _messages.Add($"\t#{txIn.PreviousOutput.N}-{txIn.PreviousOutput.TransactionHash}");
             }
 
-            _messages.Add($"{Environment.NewLine}");
+            _messages.NewLine();
             _messages.Add("Out Transactions");
             _messages.Add($"Out Amount: {transaction.Outs.Amount}");
 

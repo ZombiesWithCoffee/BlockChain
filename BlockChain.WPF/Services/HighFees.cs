@@ -20,10 +20,10 @@ namespace BlockChain.WPF.Services {
 
         public async Task Search(int start, int stop){
 
-            _messages.Add($"{Environment.NewLine}");
+            _messages.NewLine();
             _messages.Add($"Searching for Fees greater than {HighFee}");
 
-            for (var blockNumber = start; blockNumber < stop; blockNumber++) {
+            for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
 
                 var fileName = Path.Combine(Settings.Default.InputPath, $"blk{blockNumber:D5}.dat");
 

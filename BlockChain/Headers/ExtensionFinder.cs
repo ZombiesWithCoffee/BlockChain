@@ -43,7 +43,7 @@ namespace BlockChain.Headers {
             */
 
 
-            return ".dat";
+            return "dat";
         }
     }
 }

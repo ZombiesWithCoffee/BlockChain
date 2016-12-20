@@ -17,7 +17,7 @@ namespace BlockChain {
             get
             {
                 if (Data.Length < 10)
-                    return ".dat";
+                    return "dat";
 
                 return ExtensionFinder.Find(Data);
             }
