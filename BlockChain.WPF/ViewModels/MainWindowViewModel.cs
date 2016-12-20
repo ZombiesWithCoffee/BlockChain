@@ -50,14 +50,14 @@ namespace BlockChain.WPF.ViewModels {
                 Blocks.Clear();
 
                 foreach (var file in openFileDialog.FileNames){
-                    Messages.Add($"Opening file {Path.GetFileNameWithoutExtension(file)} ");
+                    Messages.Add($"Opening file {Path.GetFileNameWithoutExtension(file)} ", MessageType.Heading);
                     await Blocks.Add(file);
                     Blocks.JoinInsAndOuts();
                 }
             }
             finally{
                 Mouse.OverrideCursor = Cursors.Arrow;
-                Messages.Add("Opening file complete");
+                Messages.Add("Opening file complete", MessageType.Heading);
             }
         });
 

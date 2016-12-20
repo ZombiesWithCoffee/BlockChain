@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.ViewModels;
 
 namespace BlockChain.WPF{
@@ -25,7 +26,8 @@ namespace BlockChain.WPF{
             var text = new StringBuilder();
 
             foreach (var item in listView.SelectedItems){
-                text.AppendLine(item.ToString());
+                var message = item as Message;
+                text.AppendLine(message?.Text);
             }
 
             Clipboard.SetText(text.ToString());
