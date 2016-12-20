@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
 
     public class SearchTransactionId{
 
-        public SearchTransactionId(ObservableCollection<string> messages){
+        public SearchTransactionId(MessageCollection messages){
             _messages = messages;
         }
 
-        private readonly ObservableCollection<string> _messages;
+        private readonly MessageCollection _messages;
 
         public BlockContainer Blocks { get; } = new BlockContainer();
 

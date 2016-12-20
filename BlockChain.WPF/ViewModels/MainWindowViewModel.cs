@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using BlockChain.WPF.Dialogs;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 using BlockChain.WPF.Services;
 using GalaSoft.MvvmLight;
@@ -16,7 +17,7 @@ namespace BlockChain.WPF.ViewModels {
 
         public BlockContainer Blocks { get; } = new BlockContainer();
 
-        public ObservableCollection<string> Messages { get; } = new ObservableCollection<string>();
+        public MessageCollection Messages { get; } = new MessageCollection();
 
         public ICommand ClearCommand => new RelayCommand(() => {
             Messages.Clear();

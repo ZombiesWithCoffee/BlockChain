@@ -2,16 +2,17 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
     public class HighFees{
 
-        public HighFees(ObservableCollection<string> messages) {
+        public HighFees(MessageCollection messages) {
             _messages = messages;
         }
 
-        readonly ObservableCollection<string> _messages;
+        readonly MessageCollection _messages;
 
         public BlockContainer Blocks { get; } = new BlockContainer();
 

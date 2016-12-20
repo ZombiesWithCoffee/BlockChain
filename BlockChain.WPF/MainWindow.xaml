@@ -60,6 +60,13 @@
                       ItemsSource="{Binding Messages}" 
                       Padding="5"
                       SelectionChanged="Selector_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Text}" FontWeight="Bold" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
         </Grid>

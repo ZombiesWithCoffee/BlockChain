@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using BlockChain.WPF.Messaging;
 
 namespace BlockChain.WPF.Services {
-    public class ReadTransaction{
 
-        public ReadTransaction(BlockContainer blocks, ObservableCollection<string> messages){
+    class ReadTransaction{
+
+        public ReadTransaction(BlockContainer blocks, MessageCollection messages) {
             _blocks = blocks;
             _messages = messages;
         }
 
-        readonly ObservableCollection<string> _messages;
+        readonly MessageCollection _messages;
         readonly BlockContainer _blocks;
 
         public void Execute(string txId){
