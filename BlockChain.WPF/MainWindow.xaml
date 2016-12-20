@@ -39,7 +39,7 @@
 
         <DataTemplate x:Key="ErrorTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding Text}" FontSize="12" Foreground="Red"/>
+                <TextBlock Text="{Binding Text}" FontSize="14" Foreground="Red"/>
             </StackPanel>
         </DataTemplate>
 
@@ -76,6 +76,8 @@
                 <MenuItem Header="Search For Known Extensions" Command="{Binding SearchForKnownExtensions}"/>
                 <MenuItem Header="Search For High Fees" Command="{Binding SearchForHighFees}"/>
                 <MenuItem Header="Search for Satoshi Uploads" Command="{Binding SearchSatoshiUploads}"/>
+                <MenuItem Header="Search for Hash160 (Zero)" Command="{Binding SearchHash160Zero}"/>
+                
             </MenuItem>
 
             <MenuItem Header="_Query">

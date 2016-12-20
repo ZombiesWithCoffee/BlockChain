@@ -185,17 +185,34 @@ namespace BlockChain.WPF.ViewModels {
             }
         });
 
-        public ICommand SearchForTransactionId => new RelayCommand(async() => {
+        public ICommand SearchHash160Zero => new RelayCommand(async () => {
 
-            var openTransactionDialog = new OpenTransactionsDialog();
+            var openBlocksDialog = new OpenBlocksDialog();
 
-            if (openTransactionDialog.ShowDialog() == false)
+            if (openBlocksDialog.ShowDialog() == false)
                 return;
 
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                await new SearchTransactionId(Messages).Search(openTransactionDialog.ViewModel.Transaction, 2, 706);
+                await new SearchHash160Zero(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+            }
+            finally {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+        });
+
+        public ICommand SearchForTransactionId => new RelayCommand(async() => {
+
+            var searchTransaction = new SearchTransaction();
+
+            if (searchTransaction.ShowDialog() == false)
+                return;
+
+            try {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                await new SearchTransactionId(Messages).Search(searchTransaction.ViewModel.Transaction, searchTransaction.ViewModel.Start, searchTransaction.ViewModel.Stop);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;

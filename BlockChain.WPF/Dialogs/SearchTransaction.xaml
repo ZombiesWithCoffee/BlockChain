@@ -1,0 +1,70 @@
+﻿<Window x:Class="BlockChain.WPF.Dialogs.SearchTransaction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:viewModels="clr-namespace:BlockChain.WPF.ViewModels"
+        mc:Ignorable="d" 
+        Title="Read Transaction"
+        WindowStartupLocation="CenterScreen"
+        Height="300" 
+        Width="650"
+        FontSize="18"
+        d:DataContext ="{d:DesignInstance {x:Type viewModels:SearchTransactionViewModel}, IsDesignTimeCreatable=True}"  
+        >
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="GroupBox"  BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Margin" Value="3 13 3 3"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="Border" BorderThickness="3" CornerRadius="9" BorderBrush="Black" Margin="5" Padding="10" Background="AntiqueWhite">
+        <Grid Margin="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold">Search For Transaction</Label>
+            <Label Grid.Row="1" Grid.Column="0"  Content="Transaction:"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="14" Margin="3" Text="{Binding Path=Transaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="2" Grid.Column="0"  Content="Start:"></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Start}" Width="70" HorizontalAlignment="Left" Margin="3" PreviewTextInput="UIElement_OnPreviewTextInput" DataObject.Pasting="TextBoxPasting" />
+            <Label Grid.Row="3" Grid.Column="0"  Content="Stop:"></Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Stop}" Width="70" HorizontalAlignment="Left" Margin="3" PreviewTextInput="UIElement_OnPreviewTextInput" DataObject.Pasting="TextBoxPasting" />
+
+            <Grid Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Button Content="OK" IsDefault="True" Grid.Column="0" Click="OK_Click"/>
+                <Button Content="Cancel" IsCancel="True" Grid.Column="1"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

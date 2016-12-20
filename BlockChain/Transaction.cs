@@ -57,7 +57,7 @@ namespace BlockChain
             var data = new List<byte>();
 
             foreach (var txOut in Outs) {
-                data.AddRange(txOut.Script.ToInnerBytes());
+                data.AddRange(txOut.Script.Inner);
             }
 
             return data.ToArray();
@@ -68,7 +68,7 @@ namespace BlockChain
             var data = new List<byte>();
 
             foreach (var txOut in Outs) {
-                data.AddRange(txOut.Script.ToInnerBytes());
+                data.AddRange(txOut.Script.Inner);
             }
 
             if (data.Count < 8)

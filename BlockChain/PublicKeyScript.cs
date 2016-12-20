@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BlockChain.Extensions;
 
 namespace BlockChain
@@ -27,10 +28,25 @@ namespace BlockChain
                     return string.Empty;
                 }
 
-                byteArray.AddRange(ToInnerBytes());
+                byteArray.AddRange(Inner);
                 byteArray.AddRange(Base58Encoding.GetCheckSum(byteArray.ToArray()));
 
                 return Base58Encoding.Encode(byteArray.ToArray());
+            }
+        }
+
+        public bool IsZero => Inner.All(x => x == 0x00);
+
+        public bool IsOne
+        {
+            get
+            {
+                var inner = Inner;
+
+                if(inner.Last() != 0x01)
+                    return false;
+
+                return inner.Take(Inner.Length - 1).All(x => x == 0x00);
             }
         }
     }

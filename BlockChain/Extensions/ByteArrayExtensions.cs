@@ -122,6 +122,12 @@ namespace BlockChain.Extensions {
                 && array[array.Length - 1] == 0x04;
         }
 
+        // 0427f6457716e57352b3d071c451cc4f2c56704344029c0e87e6417bcd47dbe8f172a4e1169b0b138051993d2e2d685bba1382f6c5e9f50b8d9cdb367a1b549cbb OP_CHECKSIG 
+
+        public static bool IsOpCheckSig(this byte[] array) {
+            return array[array.Length - 1] == Op.OP_CHECKSIG;
+        }
+
         // OP_DUP OP_HASH160 ac42e0f55f4f26cb4d350add34ae8f15aa95382b OP_EQUALVERIFY OP_CHECKSIG
 
         public static bool IsOpDupCheckSig(this byte[] array){

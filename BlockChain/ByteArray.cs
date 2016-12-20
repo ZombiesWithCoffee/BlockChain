@@ -29,37 +29,43 @@ namespace BlockChain
             index += bytes;
         }
 
-        public byte[] ToInnerBytes(){
+        public byte[] Inner{
 
-            if (Raw.Length < 8)
+            get{
+                if (Raw.Length < 8)
+                    return Raw;
+
+                if (Raw.IsOpDupCheckSig()){
+                    return ToOpDupCheckBytes();
+                }
+
+                if (Raw.IsOpHashEqual()){
+                    return ToOpHashBytes();
+                }
+
+                if (Raw.IsOp1() || Raw.IsOp1V2()){
+                    return ToOp1Bytes();
+                }
+
+                if (Raw.IsOp2()){
+                    return ToOp2Bytes();
+                }
+
+                if (Raw.IsOp3()){
+                    return ToOp3Bytes();
+                }
+
+                if (Raw.IsOp3V2()){
+                    return ToOp3Bytes();
+                }
+
+                if (Raw.IsOpCheckSig()){
+                    return ToOpCheckSigBytes();
+                }
+
+                // TODO: Find out why it goes down this far
                 return Raw;
-
-            if (Raw.IsOpDupCheckSig()){
-                return ToOpDupCheckBytes();
             }
-
-            if (Raw.IsOpHashEqual()) {
-                return ToOpHashBytes();
-            }
-
-            if (Raw.IsOp1() || Raw.IsOp1V2()) {
-                return ToOp1Bytes();
-            }
-
-            if (Raw.IsOp2()){
-                return ToOp2Bytes();
-            }
-
-            if (Raw.IsOp3()){
-                return ToOp3Bytes();
-            }
-
-            if (Raw.IsOp3V2()) {
-                return ToOp3Bytes();
-            }
-
-            // TODO: Find out why it goes down this far
-            return Raw;
 //            throw new InvalidDataException();
         }
 
@@ -68,6 +74,14 @@ namespace BlockChain
             var data = new byte[Raw.Length - 5];
 
             Buffer.BlockCopy(Raw, 3, data, 0, Raw.Length - 5);
+
+            return data;
+        }
+
+        byte[] ToOpCheckSigBytes(){
+            var data = new byte[Raw.Length - 1];
+
+            Buffer.BlockCopy(Raw, 0, data, 0, Raw.Length - 1);
 
             return data;
         }
@@ -114,11 +128,11 @@ namespace BlockChain
         public string OpString{
             get{
                 if (Raw.IsOpDupCheckSig()){
-                    return "OP_DUP OP_HASH160 " + ToInnerBytes().ToHex() + " OP_EQUALVERIFY OP_CHECKSIG";
+                    return "OP_DUP OP_HASH160 " + Inner.ToHex() + " OP_EQUALVERIFY OP_CHECKSIG";
                 }
 
                 if (Raw.IsOpHashEqual()){
-                    return "<" + ToInnerBytes().ToHex() + ">";
+                    return "<" + Inner.ToHex() + ">";
                 }
 
                 if (Raw.IsOp1() || Raw.IsOp1V2()){

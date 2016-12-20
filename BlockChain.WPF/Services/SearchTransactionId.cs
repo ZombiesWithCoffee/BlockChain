@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
@@ -18,8 +17,10 @@ namespace BlockChain.WPF.Services {
 
         public async Task Search(string txId, int start, int stop) {
 
+            txId = txId.Trim('\r', '\n');
+
             _messages.NewLine();
-            _messages.Add("Finding Transactions that used Shatoshi's Upload File Transaction");
+            _messages.Add($"Searching For Transaction ID {txId}", MessageType.Heading);
 
             for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
 
@@ -34,14 +35,13 @@ namespace BlockChain.WPF.Services {
                 Blocks.Clear();
                 await Blocks.Add(fileName);
 
-                Blocks.Clear();
-                await Blocks.Add(fileName);
-
                 if (Blocks[txId] != null) {
-                    _messages.Add($"Transaction {txId} found in file {fileName}");
+                    _messages.Add("Transaction found", MessageType.Error);
                     break;
                 }
             }
+
+            _messages.Add($"Search Complete", MessageType.Heading);
         }
     }
 }

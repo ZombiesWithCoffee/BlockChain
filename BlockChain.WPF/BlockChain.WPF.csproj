@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\SearchTransaction.xaml.cs">
+      <DependentUpon>SearchTransaction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SettingsDialog.xaml.cs">
       <DependentUpon>SettingsDialog.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,7 @@
     <Compile Include="Services\OpenFiles.cs" />
     <Compile Include="Services\QuerySeveralTxOuts.cs" />
     <Compile Include="Services\QueryBase64Messages.cs" />
+    <Compile Include="Services\SearchHash160Zero.cs" />
     <Compile Include="Services\QueryTextMessages.cs" />
     <Compile Include="Services\WalkAddress.cs" />
     <Compile Include="Services\DownloadFile.cs" />
@@ -99,9 +103,14 @@
     <Compile Include="Services\KnownExtensions.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Messaging\Message.cs" />
+    <Compile Include="ViewModels\SearchTransactionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\OpenBlocksViewModel.cs" />
     <Compile Include="ViewModels\OpenTransactionsViewModel.cs" />
+    <Page Include="Dialogs\SearchTransaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\SettingsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
