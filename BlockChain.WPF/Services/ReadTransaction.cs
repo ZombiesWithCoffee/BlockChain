@@ -23,7 +23,7 @@ namespace BlockChain.WPF.Services {
             }
 
             _messages.Add($"{Environment.NewLine}");
-            _messages.Add($"Transaction: {transaction}");
+            _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
             _messages.Add($"Fee Amount: {transaction.Fees}");
             _messages.Add($"Fee Per Out: {transaction.FeePerOut}");
 

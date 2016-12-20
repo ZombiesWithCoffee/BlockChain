@@ -25,7 +25,7 @@ namespace BlockChain.WPF.Services {
 
                 var fileName = Path.Combine(Settings.Default.InputPath, $"blk{blockNumber:D5}.dat");
 
-                _messages.Add($"File: {Path.GetFileNameWithoutExtension(fileName)}");
+                _messages.Add($"File: {Path.GetFileNameWithoutExtension(fileName)}", MessageType.Block);
 
                 if (Path.GetFileName(fileName) == "blk00000.dat") {
                     continue;

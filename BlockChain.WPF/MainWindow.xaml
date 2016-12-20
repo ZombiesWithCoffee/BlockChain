@@ -17,6 +17,34 @@
         d:DataContext ="{d:DesignInstance {x:Type viewModels:MainWindowViewModel}, IsDesignTimeCreatable=True}"    
         >
 
+    <Window.Resources>
+        
+        <DataTemplate x:Key="NormalTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Text}" FontWeight="Bold" />
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="BlockTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Text}" FontWeight="Bold" Foreground="Green" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TransactionTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Text}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ErrorTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Text}" Foreground="Red"/>
+            </StackPanel>
+        </DataTemplate>
+        
+    </Window.Resources>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -60,13 +88,32 @@
                       ItemsSource="{Binding Messages}" 
                       Padding="5"
                       SelectionChanged="Selector_OnSelectionChanged">
-                <ListView.ItemTemplate>
+                
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="{Binding Text}" FontWeight="Bold" />
-                        </WrapPanel>
+                        <ContentControl Content="{Binding}">
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Normal">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource NormalTemplate}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Block">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource BlockTemplate}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Transaction">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource TransactionTemplate}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MessageType}" Value="Error">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource ErrorTemplate}" />
+                                        </DataTrigger>                                        
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                
+                </ItemsControl.ItemTemplate>
             </ListView>
 
         </Grid>

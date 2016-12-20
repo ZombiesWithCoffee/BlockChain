@@ -76,7 +76,7 @@ namespace BlockChain.WPF.ViewModels {
                 readTransaction.Execute(openTransactionDialog.ViewModel.Transaction);
             }
             catch (Exception ex) {
-                Messages.Add($"Exception: {ex.Message}");
+                Messages.Add($"Exception: {ex.Message}", MessageType.Error);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -108,7 +108,7 @@ namespace BlockChain.WPF.ViewModels {
                 }
             }
             catch (Exception ex) {
-                Messages.Add($"Exception: {ex.Message}");
+                Messages.Add($"Exception: {ex.Message}", MessageType.Error);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -131,7 +131,7 @@ namespace BlockChain.WPF.ViewModels {
                 Messages.Add($"File saved to {fileName}");
             }
             catch (Exception ex) {
-                Messages.Add(ex.Message);
+                Messages.Add(ex.Message, MessageType.Error);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -154,7 +154,7 @@ namespace BlockChain.WPF.ViewModels {
                 Messages.Add($"File saved to {fileName}");
             }
             catch (InvalidDataException ex) {
-                Messages.Add(ex.Message);
+                Messages.Add(ex.Message, MessageType.Error);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;

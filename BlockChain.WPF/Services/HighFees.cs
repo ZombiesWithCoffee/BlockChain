@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using BlockChain.WPF.Messaging;

@@ -3,6 +3,7 @@
     public enum MessageType {
         Block,
         Transaction,
-        Normal
+        Normal,
+        Error
     }
 }
