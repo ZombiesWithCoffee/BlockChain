@@ -83,8 +83,10 @@
       <DependentUpon>OpenTransactionsDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\SetBindingExtension.cs" />
+    <Compile Include="Services\DownloadFile.cs" />
     <Compile Include="Services\HighFees.cs" />
     <Compile Include="Services\ReadTransaction.cs" />
+    <Compile Include="Services\DownloadSatoshi.cs" />
     <Compile Include="Services\SearchTransactionId.cs" />
     <Compile Include="Services\SatoshiUploads.cs" />
     <Compile Include="Services\KnownExtensions.cs" />
@@ -108,7 +110,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Abstract\IMainWindowViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

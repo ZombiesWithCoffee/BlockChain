@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using BlockChain.WPF.Abstract;
 using BlockChain.WPF.ViewModels;
 
 namespace BlockChain.WPF{
@@ -14,9 +13,9 @@ namespace BlockChain.WPF{
             ViewModel = new MainWindowViewModel();
         }
 
-        public IMainWindowViewModel ViewModel
+        public MainWindowViewModel ViewModel
         {
-            get { return DataContext as IMainWindowViewModel; }
+            get { return DataContext as MainWindowViewModel; }
             set { DataContext = value; }
         }
 

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using BlockChain.WPF.Abstract;
 using BlockChain.WPF.Dialogs;
 using BlockChain.WPF.Properties;
 using BlockChain.WPF.Services;
@@ -13,7 +12,7 @@ using Microsoft.Win32;
 
 namespace BlockChain.WPF.ViewModels {
 
-    public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel {
+    public class MainWindowViewModel : ViewModelBase {
 
         public BlockContainer Blocks { get; } = new BlockContainer();
 
@@ -125,25 +124,13 @@ namespace BlockChain.WPF.ViewModels {
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var transactions = openTransactionDialog.ViewModel.Transaction.Split('\r', '\n');
-                var fileData = Blocks.GetFile(transactions);
-
-                if (fileData == null) {
-                    Messages.Add("Transaction not found");
-                    return;
-                }
-
-                // Now check for headers
-
-                var fileName = Path.Combine(Settings.Default.OutputPath, Path.ChangeExtension(transactions[0], fileData.Extension));
-
-                File.Delete(fileName);
-                File.WriteAllBytes(fileName, fileData.Data);
+                var downloadFile = new DownloadFile(Blocks);
+                var fileName = downloadFile.Download(openTransactionDialog.ViewModel.Transaction.Split('\r', '\n'));
 
                 Messages.Add($"File saved to {fileName}");
             }
             catch (Exception ex) {
-                Messages.Add($"Exception: {ex.Message}");
+                Messages.Add(ex.Message);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -160,24 +147,13 @@ namespace BlockChain.WPF.ViewModels {
             try {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var fileData = Blocks.GetSatoshiUploadedFile(openTransactionDialog.ViewModel.Transaction);
-
-                if (fileData == null) {
-                    Messages.Add("Transaction not found");
-                    return;
-                }
-
-                // Now check for headers
-
-                var fileName = Path.Combine(Settings.Default.OutputPath, Path.ChangeExtension(openTransactionDialog.ViewModel.Transaction, fileData.Extension));
-
-                File.Delete(fileName);
-                File.WriteAllBytes(fileName, fileData.Data);
+                var downloadSatoshi = new DownloadSatoshi(Blocks);
+                var fileName = downloadSatoshi.Download(openTransactionDialog.ViewModel.Transaction);
 
                 Messages.Add($"File saved to {fileName}");
             }
-            catch (Exception ex) {
-                Messages.Add($"Exception: {ex.Message}");
+            catch (InvalidDataException ex) {
+                Messages.Add(ex.Message);
             }
             finally {
                 Mouse.OverrideCursor = Cursors.Arrow;
