@@ -57,6 +57,8 @@
     <Compile Include="Headers\7z.cs" />
     <Compile Include="Headers\Doc.cs" />
     <Compile Include="Headers\GZip.cs" />
+    <Compile Include="Headers\Assange.cs" />
+    <Compile Include="Headers\Wikileaks.cs" />
     <Compile Include="Headers\Xls.cs" />
     <Compile Include="Headers\Jpg.cs" />
     <Compile Include="Headers\Pdf2.cs" />
@@ -94,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\note.txt" />
+    <None Include="WikileakHashes\md5sums.json" />
+    <None Include="WikileakHashes\md5sumtorrents.json" />
+    <Content Include="WikileakHashes\sha1sums.txt" />
+    <Content Include="WikileakHashes\sha1sumtorrents.txt" />
+    <Content Include="WikileakHashes\sha256sums.txt" />
+    <Content Include="WikileakHashes\sha256sumtorrents.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

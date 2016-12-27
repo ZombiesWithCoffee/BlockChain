@@ -219,6 +219,39 @@ namespace BlockChain.WPF.ViewModels {
             }
         });
 
+        public ICommand WalkUpEntireTransaction => new RelayCommand(async () => {
+
+            var searchTransaction = new SearchTransaction();
+
+            if (searchTransaction.ShowDialog() == false)
+                return;
+
+            try {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                await new WalkUpEntireTransaction(Messages).Search(searchTransaction.ViewModel.Transaction, searchTransaction.ViewModel.Start, searchTransaction.ViewModel.Stop);
+            }
+            finally {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+        });
+
+        public ICommand WalkDownEntireTransaction => new RelayCommand(async () => {
+
+            var searchTransaction = new SearchTransaction();
+
+            if (searchTransaction.ShowDialog() == false)
+                return;
+
+            try {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                await new WalkDownEntireTransaction(Messages).Search(searchTransaction.ViewModel.Transaction, searchTransaction.ViewModel.Start, searchTransaction.ViewModel.Stop);
+            }
+            finally {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+        });
 
         public ICommand QueryTextMessages => new RelayCommand(() => {
             new QueryTextMessages(Blocks, Messages).Execute();

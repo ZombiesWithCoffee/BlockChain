@@ -69,6 +69,8 @@
             <MenuItem Header="_Transaction">
                 <MenuItem Header="Read Transaction" Command="{Binding ReadTransaction}"/>
                 <MenuItem Header="Walk Addresses" Command="{Binding WalkAddresses}"/>
+                <MenuItem Header="Walk Up Entire Transaction" Command="{Binding WalkUpEntireTransaction}"/>
+                <MenuItem Header="Walk Down Entire Transaction" Command="{Binding WalkDownEntireTransaction}"/>
             </MenuItem>
 
             <MenuItem Header="_Search">

@@ -28,5 +28,7 @@ namespace BlockChain {
         public BitcoinValue Amount => BitcoinValue.FromSatoshis(this.Sum(o => o.Value.Satoshis));
 
         public int SpentCount => this.Count(txOut => txOut.TxIn != null);
+
+        public int ValueCount => this.Count(txOut => txOut.Value.Btc > 0.00001m );
     }
 }

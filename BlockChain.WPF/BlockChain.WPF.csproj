@@ -91,6 +91,8 @@
     <Compile Include="Services\OpenFiles.cs" />
     <Compile Include="Services\QuerySeveralTxOuts.cs" />
     <Compile Include="Services\QueryBase64Messages.cs" />
+    <Compile Include="Services\WalkDownEntireTransaction.cs" />
+    <Compile Include="Services\WalkUpEntireTransaction.cs" />
     <Compile Include="Services\SearchHash160Zero.cs" />
     <Compile Include="Services\QueryTextMessages.cs" />
     <Compile Include="Services\WalkAddress.cs" />
