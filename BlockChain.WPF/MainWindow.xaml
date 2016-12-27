@@ -79,6 +79,7 @@
                 <MenuItem Header="Search For High Fees" Command="{Binding SearchForHighFees}"/>
                 <MenuItem Header="Search for Satoshi Uploads" Command="{Binding SearchSatoshiUploads}"/>
                 <MenuItem Header="Search for Hash160 (Zero)" Command="{Binding SearchHash160Zero}"/>
+                <MenuItem Header="Search for AES Keys" Command="{Binding SearchAesKeys}"/>
                 
             </MenuItem>
 
