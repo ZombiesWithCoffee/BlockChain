@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
+using BlockChain.WPF.Data;
 using BlockChain.WPF.Dialogs;
 using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;

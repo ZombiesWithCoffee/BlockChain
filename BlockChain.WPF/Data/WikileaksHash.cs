@@ -8,6 +8,7 @@ namespace BlockChain.WPF.Data {
 
         public WikileaksHash(string hash, string description, string transaction = null){
 
+            Hash = hash;
             Description = description;
             Transaction = transaction;
 
@@ -17,6 +18,7 @@ namespace BlockChain.WPF.Data {
         }
 
         public string Description { get; }
+        public string Hash { get; }
         public string Transaction { get; set; }
         public byte[] RipeMd160 { get; }
     }
