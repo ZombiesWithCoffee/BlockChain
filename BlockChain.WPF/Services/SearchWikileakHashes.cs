@@ -47,25 +47,31 @@ namespace BlockChain.WPF.Services {
 
                 foreach (var transaction in block.Transactions){
 
-                    if (transaction.ToString() == "bdb67f3b003e2c3d06d6b8d314ca7b937f9ae7de20ed34baccaedcac62e6f414"){
-                        int j = 0;
-                    }
+                    foreach (var hash in Wikileaks.Hashes) {
 
-                    foreach (var txOut in transaction.Outs){
+                        if (!string.IsNullOrEmpty(hash.Transaction))
+                            continue;
 
-                        foreach (var hash in Wikileaks.Hashes){
-
-                            if (!string.IsNullOrEmpty(hash.Transaction))
-                                continue;
+                        foreach (var txOut in transaction.Outs){
 
                             // if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
-                            if (txOut.Script.Inner.Search(hash.RipeMd160) == null)
-                                continue;
 
-                            _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
-                            _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
+                            if (txOut.Script.Inner.Search(hash.RipeMd160) != null){
+                                _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
+                                _messages.Add($"Transaction TxOut: {transaction}", MessageType.Transaction);
 
-                            hash.Transaction = transaction.ToString();
+                                hash.Transaction = transaction.ToString();
+                            }
+                        }
+
+                        foreach (var txIn in transaction.Ins) {
+
+                            if (txIn.Script.Inner.Search(hash.RipeMd160) != null) {
+                                _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
+                                _messages.Add($"Transaction TxIn: {transaction}", MessageType.Transaction);
+
+                                hash.Transaction = transaction.ToString();
+                            }
                         }
                     }
                 }

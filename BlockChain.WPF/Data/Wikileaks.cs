@@ -4,7 +4,7 @@ namespace BlockChain.WPF.Data {
     public static class Wikileaks {
 
         public static List<WikileaksHash> Hashes = new List<WikileaksHash>{
-            /*
+            
             new WikileaksHash( "dee8cf89b4d778193cd549e71ec2c617ddfc6f0e883d7c2bbbc6a9151162efc2", "abschlussbericht-agnes.pdf" ),
             new WikileaksHash( "7a8f70be235b2213c4279691714c387b2693c139599280af9bee4809cd53a9e2", "abu-ghraib-map.jpg" ),
             new WikileaksHash( "c3bc11626c9ace813da159f50066fe57c86a071b74c75108bcb531eff68ae49e", "abu-ghuragb-secret.jpg" ),
@@ -209,7 +209,6 @@ namespace BlockChain.WPF.Data {
             new WikileaksHash( "9248770adc8bee011cc83f46943ade9d90986f9f840d75bf0b4448f148d61b7a", "business-software-alliance-belgium-21-september-1997.pdf" ),
             new WikileaksHash( "ea5f9fbafb87d27094b7cd0bad8796075047cb8cf4649196dc330be2fc36796c", "butswana-stock-exchange-rules-1996.pdf" ),
             new WikileaksHash( "4fc0015e9a654bedde125306137fab1a249b6f41aff53caf9ac01772714aae40", "cabinet-paper-port-klang-free-zone-malaysia-scandal-english-vision.pdf" ),
-            */
             new WikileaksHash( "321da97215059c710bb16a73315c63c9c4e69dee48b56f8a66f50dc10774e47c", "cablegate-201011301013.7z" ),
             new WikileaksHash( "50cd80e7d264230666aca77cb6a68b5351ef2c735a16f724982113f4e252c08a", "cablegate-201011301036.7z" ),
             new WikileaksHash( "c66a79c6ebbcf991da4e2b2b99a8541d578fd36ef9e2605016818dd2f78dd92f", "cablegate-201011301101.7z" ),
@@ -315,7 +314,6 @@ namespace BlockChain.WPF.Data {
             new WikileaksHash( "e07a39dc226dc47ac056d20b64bec53ac37cdb93417fc6c68b66132a1899507f", "cablegate-201012081854.7z" ),
             new WikileaksHash( "60658f07509badf1323f4835e4bf2abe243393b104b6a4656deef84c90ef3513", "cablegate-201012082231.7z" ),
             new WikileaksHash( "d71792842a3414102cb9d368c1977df37bdc9989be105202bcc739ac46aee6ed", "cablegate-20101210047.7z" ),
-            /*
             new WikileaksHash( "b436b619b705de5f2891798d4318f2ab31bae4b453aecd1b0f96800a24557ad0", "cablegate-201012100924.7z" ),
             new WikileaksHash( "f63ccd341a785587d5de7bc1f82c34aeae22ed611ba732b8e62ea73a9e37d142", "cablegate-201012101855.7z" ),
             new WikileaksHash( "87f164c4e511688a71eda84cab69f5e6d440c0142cc7f82b35add0ccbfa591b5", "cablegate-201012102105.7z" ),
@@ -2333,7 +2331,6 @@ namespace BlockChain.WPF.Data {
             new WikileaksHash( "f74e85292ef8ca4964f3ef5b52dc6d36dc47c2dc8a9cc1b8540434f47770aa0c", "zandvoort-cdroms-kinderporno-affaire.pdf" ),
             new WikileaksHash( "f642a3c13c9eae1a8eacfa1c61c44c862f87bbf63231e4c2024840018ac6f398", "zimbabwe-chinese-weapons.zip" ),
             new WikileaksHash( "744bb5e94193ff95a1ef4a70e78220ab14d24c97c728576aa5c0d336e8f1ac08", "zimbabwe-military-election.pdf" ),
-            */
         };
     }
 }
