@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BlockChain.Extensions;
 using BlockChain.WPF.Data;
 using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
@@ -57,7 +58,8 @@ namespace BlockChain.WPF.Services {
                             if (!string.IsNullOrEmpty(hash.Transaction))
                                 continue;
 
-                            if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
+                            // if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
+                            if (txOut.Script.Inner.Search(hash.RipeMd160) == null)
                                 continue;
 
                             _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
