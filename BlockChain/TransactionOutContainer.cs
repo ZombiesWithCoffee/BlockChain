@@ -30,5 +30,16 @@ namespace BlockChain {
         public int SpentCount => this.Count(txOut => txOut.TxIn != null);
 
         public int ValueCount => this.Count(txOut => txOut.Value.Btc > 0.00001m );
+
+        public byte[] GetFileBytes() {
+
+            var data = new List<byte>();
+
+            foreach (var txOut in this) {
+                data.AddRange(txOut.Script.Inner);
+            }
+
+            return data.ToArray();
+        }
     }
 }

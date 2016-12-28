@@ -219,6 +219,23 @@ namespace BlockChain.WPF.ViewModels {
             }
         });
 
+        public ICommand SearchForByteArray => new RelayCommand(async () => {
+
+            var byteArrayDialog = new ByteArrayDialog();
+
+            if (byteArrayDialog.ShowDialog() == false)
+                return;
+
+            try {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                await new SearchByteArray(Messages).Search(byteArrayDialog.ViewModel.ByteText, byteArrayDialog.ViewModel.Start, byteArrayDialog.ViewModel.Stop);
+            }
+            finally {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+        });
+
         public ICommand WalkUpEntireTransaction => new RelayCommand(async () => {
 
             var searchTransaction = new SearchTransaction();

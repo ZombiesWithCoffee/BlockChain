@@ -76,6 +76,7 @@
             <MenuItem Header="_Search">
                 <MenuItem Header="Search For Transaction ID" Command="{Binding SearchForTransactionId}"/>
                 <MenuItem Header="Search For Known Extensions" Command="{Binding SearchForKnownExtensions}"/>
+                <MenuItem Header="Search for Byte Array" Command="{Binding SearchForByteArray}"/>
                 <MenuItem Header="Search For High Fees" Command="{Binding SearchForHighFees}"/>
                 <MenuItem Header="Search for Satoshi Uploads" Command="{Binding SearchSatoshiUploads}"/>
                 <MenuItem Header="Search for Hash160 (Zero)" Command="{Binding SearchHash160Zero}"/>

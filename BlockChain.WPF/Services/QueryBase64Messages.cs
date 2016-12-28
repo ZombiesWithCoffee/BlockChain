@@ -41,7 +41,7 @@ namespace BlockChain.WPF.Services {
 
                         var base64 = new List<byte>();
 
-                        foreach (var @byte in transaction.GetFileBytes()){
+                        foreach (var @byte in transaction.Outs.GetFileBytes()){
 
                             if (@byte >= 'A' && @byte <= 'Z'
                                 || @byte >= '0' && @byte <= '9'

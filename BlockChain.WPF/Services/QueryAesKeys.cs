@@ -38,7 +38,7 @@ namespace BlockChain.WPF.Services {
                 foreach (var block in Blocks){
                     foreach (var transaction in block.Transactions){
 
-                        var byteArray = transaction.GetFileBytes();
+                        var byteArray = transaction.Outs.GetFileBytes();
 
                         if (byteArray.Length > 240){
                             AesKeyFind.AesKeyFind.find_keys(byteArray, byteArray.Length - 240);

@@ -189,7 +189,7 @@ namespace BlockChain {
         public FileData GetFile(string txId){
             var transaction = this[txId];
 
-            var bytes = transaction.GetFileBytes();
+            var bytes = transaction.Outs.GetFileBytes();
 
             return new FileData(bytes);
         }
@@ -205,7 +205,7 @@ namespace BlockChain {
 
                 var transaction = this[node];
 
-                var bytes = transaction.GetFileBytes();
+                var bytes = transaction.Outs.GetFileBytes();
 
                 data.AddRange(bytes);
             }

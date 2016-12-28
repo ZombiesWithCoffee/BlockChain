@@ -102,10 +102,11 @@
     <Content Include="Documentation\note.txt" />
     <None Include="WikileakHashes\md5sums.json" />
     <None Include="WikileakHashes\md5sumtorrents.json" />
-    <Content Include="WikileakHashes\sha1sums.txt" />
-    <Content Include="WikileakHashes\sha1sumtorrents.txt" />
-    <Content Include="WikileakHashes\sha256sums.txt" />
-    <Content Include="WikileakHashes\sha256sumtorrents.txt" />
+    <None Include="WikileakHashes\sha1sums.json" />
+    <None Include="WikileakHashes\sha1sumtorrents.json" />
+    <None Include="WikileakHashes\sha256sums.json" />
+    <None Include="WikileakHashes\sha256sumtorrents.json" />
+    <None Include="WikileakHashes\test.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\ByteArrayDialog.xaml.cs">
+      <DependentUpon>ByteArrayDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SearchTransaction.xaml.cs">
       <DependentUpon>SearchTransaction.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,7 @@
     <Compile Include="Services\QueryAesKeys.cs" />
     <Compile Include="Services\QuerySeveralTxOuts.cs" />
     <Compile Include="Services\QueryBase64Messages.cs" />
+    <Compile Include="Services\SearchByteArray.cs" />
     <Compile Include="Services\WalkDownEntireTransaction.cs" />
     <Compile Include="Services\WalkUpEntireTransaction.cs" />
     <Compile Include="Services\SearchHash160Zero.cs" />
@@ -106,10 +110,15 @@
     <Compile Include="Services\KnownExtensions.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Messaging\Message.cs" />
+    <Compile Include="ViewModels\SearchByteArrayViewModel.cs" />
     <Compile Include="ViewModels\SearchTransactionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\OpenBlocksViewModel.cs" />
     <Compile Include="ViewModels\OpenTransactionsViewModel.cs" />
+    <Page Include="Dialogs\ByteArrayDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\SearchTransaction.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

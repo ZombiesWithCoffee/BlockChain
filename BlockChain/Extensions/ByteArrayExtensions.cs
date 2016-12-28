@@ -4,7 +4,7 @@ using BlockChain.Enums;
 
 namespace BlockChain.Extensions {
 
-    internal static class ByteArrayExtensions{
+    public static class ByteArrayExtensions{
 
         public static uint ToUInt32(this byte[] data, ref int index){
             var result = BitConverter.ToUInt32(data, index);
@@ -80,7 +80,7 @@ namespace BlockChain.Extensions {
             return DateTime.SpecifyKind(new DateTime(1970, 1, 1) + TimeSpan.FromSeconds(value), DateTimeKind.Utc);
         }
 
-        public static int Search(this byte[] haystack, byte[] needle) {
+        public static int? Search(this byte[] haystack, byte[] needle) {
             var len = needle.Length;
             var limit = haystack.Length - len;
             for (var i = 0; i <= limit; i++) {
@@ -90,7 +90,7 @@ namespace BlockChain.Extensions {
                 }
                 if (k == len) return i;
             }
-            return -1;
+            return null;
         }
 
         public static SHA256 Sha256 = SHA256.Create();
