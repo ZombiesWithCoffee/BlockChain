@@ -294,6 +294,15 @@ namespace BlockChain.WPF.ViewModels {
             await new QueryAesKeys(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
         });
 
+        public ICommand SearchWikileaksHashes => new RelayCommand(async () => {
+
+            var openBlocksDialog = new OpenBlocksDialog();
+
+            if (openBlocksDialog.ShowDialog() == false)
+                return;
+
+            await new SearchWikileakHashes(Messages).Search(openBlocksDialog.ViewModel.Start, openBlocksDialog.ViewModel.Stop);
+        });
 
         public ICommand QuerySeveralTxOutsFile => new RelayCommand(() => {
             new QuerySeveralTxOuts(Blocks, Messages).Execute();

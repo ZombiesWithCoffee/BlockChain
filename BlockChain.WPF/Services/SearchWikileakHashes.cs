@@ -1,12 +1,15 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using BlockChain.WPF.Data;
 using BlockChain.WPF.Messaging;
 using BlockChain.WPF.Properties;
 
 namespace BlockChain.WPF.Services {
-    public class QueryAesKeys{
 
-        public QueryAesKeys(MessageCollection messages){
+    public class SearchWikileakHashes {
+
+        public SearchWikileakHashes(MessageCollection messages){
             _messages = messages;
         }
 
@@ -17,7 +20,7 @@ namespace BlockChain.WPF.Services {
         public async Task Search(int start, int stop) {
 
             _messages.NewLine();
-            _messages.Add("Searching for base64 messages", MessageType.Heading);
+            _messages.Add("Finding Wikileak Hashes stored in the BlockChain", MessageType.Heading);
 
             for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
 
@@ -32,32 +35,36 @@ namespace BlockChain.WPF.Services {
                 Blocks.ClearAll();
                 await Blocks.Add(fileName);
 
-                foreach (var block in Blocks){
-                    foreach (var transaction in block.Transactions){
+                foreach (var block in Blocks) {
+                    foreach (var transaction in block.Transactions) {
                         await SearchTransaction(transaction);
                     }
                 }
             }
 
-            _messages.Add("Search complete", MessageType.Heading);
+            _messages.Add("Search Complete", MessageType.Heading);
         }
 
-
-        async Task SearchTransaction(Transaction transaction) {
+        async Task SearchTransaction(Transaction transaction){
 
             await Task.Factory.StartNew(() =>
             {
-                var byteArray = transaction.Outs.GetFileBytes();
+                foreach (var txOut in transaction.Outs){
 
-                if (byteArray.Length > 240) {
-                    AesKeyFind.AesKeyFind.find_keys(byteArray, byteArray.Length - 240);
+                    foreach (var hash in Wikileaks.Hashes){
+
+                        if (!string.IsNullOrEmpty(hash.Transaction))
+                            continue;
+
+                        if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
+                            continue;
+
+                        _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
+                        _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
+
+                        hash.Transaction = transaction.ToString();
+                    }
                 }
-                /*
-                                    _messages.NewLine();
-                                    _messages.Add(transaction.ToString());
-                                    _messages.Add(text);
-                                    _messages.Add(Encoding.ASCII.GetString(result));
-                                    */
             });
         }
     }
