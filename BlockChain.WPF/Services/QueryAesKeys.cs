@@ -34,7 +34,7 @@ namespace BlockChain.WPF.Services {
 
                 foreach (var block in Blocks){
                     foreach (var transaction in block.Transactions){
-                        await SearchTransaction(transaction);
+                        SearchTransaction(transaction);
                     }
                 }
             }
@@ -43,22 +43,19 @@ namespace BlockChain.WPF.Services {
         }
 
 
-        async Task SearchTransaction(Transaction transaction) {
+        void SearchTransaction(Transaction transaction) {
 
-            await Task.Factory.StartNew(() =>
-            {
-                var byteArray = transaction.Outs.GetFileBytes();
+            var byteArray = transaction.Outs.GetFileBytes();
 
-                if (byteArray.Length > 240) {
-                    AesKeyFind.AesKeyFind.find_keys(byteArray, byteArray.Length - 240);
-                }
+            if (byteArray.Length > 240) {
+                AesKeyFind.AesKeyFind.find_keys(byteArray, byteArray.Length - 240);
+            }
                 /*
                                     _messages.NewLine();
                                     _messages.Add(transaction.ToString());
                                     _messages.Add(text);
                                     _messages.Add(Encoding.ASCII.GetString(result));
                                     */
-            });
         }
     }
 }

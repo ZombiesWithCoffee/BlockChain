@@ -34,38 +34,40 @@ namespace BlockChain.WPF.Services {
 
                 Blocks.ClearAll();
                 await Blocks.Add(fileName);
-
-                foreach (var block in Blocks) {
-                    foreach (var transaction in block.Transactions) {
-                        await SearchTransaction(transaction);
-                    }
-                }
+                SearchTransaction();
             }
 
             _messages.Add("Search Complete", MessageType.Heading);
         }
 
-        async Task SearchTransaction(Transaction transaction){
+        void SearchTransaction(){
 
-            await Task.Factory.StartNew(() =>
-            {
-                foreach (var txOut in transaction.Outs){
+            foreach (var block in Blocks){
 
-                    foreach (var hash in Wikileaks.Hashes){
+                foreach (var transaction in block.Transactions){
 
-                        if (!string.IsNullOrEmpty(hash.Transaction))
-                            continue;
+                    if (transaction.ToString() == "bdb67f3b003e2c3d06d6b8d314ca7b937f9ae7de20ed34baccaedcac62e6f414"){
+                        int j = 0;
+                    }
 
-                        if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
-                            continue;
+                    foreach (var txOut in transaction.Outs){
 
-                        _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
-                        _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
+                        foreach (var hash in Wikileaks.Hashes){
 
-                        hash.Transaction = transaction.ToString();
+                            if (!string.IsNullOrEmpty(hash.Transaction))
+                                continue;
+
+                            if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
+                                continue;
+
+                            _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);
+                            _messages.Add($"Transaction: {transaction}", MessageType.Transaction);
+
+                            hash.Transaction = transaction.ToString();
+                        }
                     }
                 }
-            });
+            }
         }
     }
 }

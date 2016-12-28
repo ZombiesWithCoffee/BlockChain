@@ -39,29 +39,26 @@ namespace BlockChain.WPF.Services {
                 await Blocks.Add(fileName);
 
                 foreach (var transaction in Blocks.TransactionList){
-                    await SearchTransaction(transaction.Value, bytes);
+                    SearchTransaction(transaction.Value, bytes);
                 }
             }
 
             _messages.Add($"Search Complete", MessageType.Heading);
         }
 
-        async Task SearchTransaction(Transaction transaction, byte[] bytes) {
+        void SearchTransaction(Transaction transaction, byte[] bytes) {
 
-            await Task.Factory.StartNew(() =>
-            {
-                var outputBytes = transaction.Outs.GetFileBytes();
+            var outputBytes = transaction.Outs.GetFileBytes();
 
-                if (outputBytes.Search(bytes) > 0) {
-                    _messages.Add($"Byte Array found in Transaction Outs {transaction}");
-                }
+            if (outputBytes.Search(bytes) > 0) {
+                _messages.Add($"Byte Array found in Transaction Outs {transaction}");
+            }
 
-                var inputBytes = transaction.Ins.GetFileBytes();
+            var inputBytes = transaction.Ins.GetFileBytes();
 
-                if (inputBytes.Search(bytes) > 0) {
-                    _messages.Add($"Byte Array found in Transaction Ins {transaction}");
-                }
-            });
+            if (inputBytes.Search(bytes) > 0) {
+                _messages.Add($"Byte Array found in Transaction Ins {transaction}");
+            }
         }
     }
 }
