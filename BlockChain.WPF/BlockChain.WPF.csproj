@@ -48,6 +48,14 @@
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Info.Blockchain.API, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BlockchainAPI.2.0.0\lib\portable-net45+win+wpa81\Info.Blockchain.API.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -98,6 +106,7 @@
     <Compile Include="Services\QueryBase64Messages.cs" />
     <Compile Include="Services\SearchByteArray.cs" />
     <Compile Include="Services\SearchWikileakHashes.cs" />
+    <Compile Include="Services\WalkHashTable.cs" />
     <Compile Include="Services\WalkDownEntireTransaction.cs" />
     <Compile Include="Services\WalkUpEntireTransaction.cs" />
     <Compile Include="Services\SearchHash160Zero.cs" />

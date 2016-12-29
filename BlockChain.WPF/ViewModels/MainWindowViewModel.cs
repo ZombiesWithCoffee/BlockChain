@@ -279,6 +279,18 @@ namespace BlockChain.WPF.ViewModels {
             new QueryTextMessages(Blocks, Messages).Execute();
         });
 
+        
+
+        public ICommand WalkHashTable => new RelayCommand(async () => {
+
+            var dialog = new OpenTransactionsDialog();
+
+            if (dialog.ShowDialog() == false)
+                return;
+
+            await new WalkHashTable(Messages).Search(dialog.ViewModel.Transaction);
+        });
+
         public ICommand QueryBase64 => new RelayCommand(async() => {
 
             var openBlocksDialog = new OpenBlocksDialog();

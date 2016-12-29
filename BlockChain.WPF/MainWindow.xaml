@@ -89,6 +89,7 @@
                 <MenuItem Header="Text Messages" Command="{Binding QueryTextMessages}"/>
                 <MenuItem Header="Excessive TxOuts" Command="{Binding QuerySeveralTxOutsFile}"/>
                 <MenuItem Header="Base64 Messages" Command="{Binding QueryBase64}"/>
+                <MenuItem Header="Wikileaks Hash Account" Command="{Binding WalkHashTable}"/>
             </MenuItem>
 
             <MenuItem Header="_Download">

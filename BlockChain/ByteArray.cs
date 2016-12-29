@@ -36,93 +36,37 @@ namespace BlockChain
                     return Raw;
 
                 if (Raw.IsOpDupCheckSig()){
-                    return ToOpDupCheckBytes();
+                    return Raw.ToOpDupCheckBytes();
                 }
 
                 if (Raw.IsOpHashEqual()){
-                    return ToOpHashBytes();
+                    return Raw.ToOpHashBytes();
                 }
 
                 if (Raw.IsOp1() || Raw.IsOp1V2()){
-                    return ToOp1Bytes();
+                    return Raw.ToOp1Bytes();
                 }
 
                 if (Raw.IsOp2()){
-                    return ToOp2Bytes();
+                    return Raw.ToOp2Bytes();
                 }
 
                 if (Raw.IsOp3()){
-                    return ToOp3Bytes();
+                    return Raw.ToOp3Bytes();
                 }
 
                 if (Raw.IsOp3V2()){
-                    return ToOp3Bytes();
+                    return Raw.ToOp3Bytes();
                 }
 
                 if (Raw.IsOpCheckSig()){
-                    return ToOpCheckSigBytes();
+                    return Raw.ToOpCheckSigBytes();
                 }
 
                 // TODO: Find out why it goes down this far
                 return Raw;
             }
 //            throw new InvalidDataException();
-        }
-
-        byte[] ToOpDupCheckBytes(){
-
-            var data = new byte[Raw.Length - 5];
-
-            Buffer.BlockCopy(Raw, 3, data, 0, Raw.Length - 5);
-
-            return data;
-        }
-
-        byte[] ToOpCheckSigBytes(){
-            var data = new byte[Raw.Length - 1];
-
-            Buffer.BlockCopy(Raw, 0, data, 0, Raw.Length - 1);
-
-            return data;
-        }
-
-        byte[] ToOpHashBytes() {
-
-            var data = new byte[Raw.Length - 3];
-
-            Buffer.BlockCopy(Raw, 2, data, 0, Raw.Length - 3);
-
-            return data;
-        }
-
-        byte[] ToOp1Bytes() {
-
-            var data = new byte[Raw.Length - 4];
-
-            Buffer.BlockCopy(Raw, 2, data, 0, Raw.Length - 4);
-
-            return data;
-        }
-
-        byte[] ToOp2Bytes(){
-
-            var data = new byte[Raw.Length - 5];
-
-            Buffer.BlockCopy(Raw,  2, data,  0, 65);
-            Buffer.BlockCopy(Raw, 68, data, 65, Raw.Length - 70);
-
-            return data;
-        }
-
-        byte[] ToOp3Bytes(){
-
-            var data = new byte[Raw.Length - 6];
-
-            Buffer.BlockCopy(Raw,   2, data,   0, 65);
-            Buffer.BlockCopy(Raw,  68, data,  65, 65);
-            Buffer.BlockCopy(Raw, 134, data, 130, Raw.Length - 136);
-
-            return data;
         }
 
         public string OpString{
@@ -136,15 +80,15 @@ namespace BlockChain
                 }
 
                 if (Raw.IsOp1() || Raw.IsOp1V2()){
-                    return "OP_1 " + ToOp1Bytes().ToHex() + " OP_1 OP_CHECKMULTISIG";
+                    return "OP_1 " + Raw.ToOp1Bytes().ToHex() + " OP_1 OP_CHECKMULTISIG";
                 }
 
                 if (Raw.IsOp2()){
-                    return "OP_1 " + ToOp2Bytes().ToHex() + " OP_2 OP_CHECKMULTISIG";
+                    return "OP_1 " + Raw.ToOp2Bytes().ToHex() + " OP_2 OP_CHECKMULTISIG";
                 }
 
                 if (Raw.IsOp3()){
-                    return "OP_1 " + ToOp3Bytes().ToHex() + " OP_3 OP_CHECKMULTISIG";
+                    return "OP_1 " + Raw.ToOp3Bytes().ToHex() + " OP_3 OP_CHECKMULTISIG";
                 }
 
                 return "OP_??? " + Raw.ToHex();
