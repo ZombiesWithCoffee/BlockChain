@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
+using BlockChain.Enums;
 
 namespace BlockChain.Extensions {
 
@@ -68,6 +70,34 @@ namespace BlockChain.Extensions {
                     value = BitConverter.ToUInt64(data, index);
                     index += 8;
                     break;
+            }
+
+            return value;
+        }
+
+
+        public static uint ToLengthInt(this byte[] data, ref int index) {
+
+            uint value;
+
+            switch (data[index++]) {
+                case Op.OP_PUSHDATA1:
+                    value = data[index];
+                    index += 1;
+                    break;
+
+                case Op.OP_PUSHDATA2:
+                    value = BitConverter.ToUInt16(data, index);
+                    index += 2;
+                    break;
+
+                case Op.OP_PUSHDATA4:
+                    value = BitConverter.ToUInt32(data, index);
+                    index += 4;
+                    break;
+
+                default:
+                    throw new InvalidDataException("The length should be PUSHDATAx");
             }
 
             return value;

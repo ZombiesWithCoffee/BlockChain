@@ -233,5 +233,21 @@ namespace BlockChain {
 
             return new FileData(data.ToArray());
         }
+
+        public FileData GetInputUploadedFile(string tx) {
+
+            var data = new List<byte>();
+
+            var transaction = this[tx];
+
+            if (transaction == null)
+                return null;
+
+            var bytes = transaction.GetInputUploadedFile();
+
+            data.AddRange(bytes);
+
+            return new FileData(data.ToArray());
+        }
     }
 }

@@ -57,7 +57,7 @@
     <Compile Include="AesKeyFind\AesKeyFind.cs" />
     <Compile Include="AesKeyFind\Util.cs" />
     <Compile Include="Base58.cs" />
-    <Compile Include="Extensions\AddressExtensions.cs" />
+    <Compile Include="Extensions\ScriptExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Headers\ExtensionFinder.cs" />
     <Compile Include="Headers\7z.cs" />

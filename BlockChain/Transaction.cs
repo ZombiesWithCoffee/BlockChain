@@ -86,5 +86,16 @@ namespace BlockChain
 
             return data.GetRange(8, length).ToArray();
         }
+
+        public byte[] GetInputUploadedFile(){
+
+            var data = new List<byte>();
+
+            foreach (var txIn in Ins) {
+                data.AddRange(txIn.Script.Inner);
+            }
+
+            return data.ToArray();
+        }
     }
 }

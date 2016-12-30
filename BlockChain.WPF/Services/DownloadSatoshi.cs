@@ -15,7 +15,10 @@ namespace BlockChain.WPF.Services {
 
         public void Download(string txId) {
 
-            var fileData = _block.GetSatoshiUploadedFile(txId);
+            txId = txId.Trim(' ', '\r', '\n');
+
+            var fileData = _block.GetInputUploadedFile(txId);
+            //      var fileData = _block.GetSatoshiUploadedFile(txId);
 
             if (fileData == null) {
                 throw new InvalidDataException("The transaction ID {txId} was not found");
