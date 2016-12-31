@@ -95,6 +95,7 @@
             <MenuItem Header="_Download">
                 <MenuItem Header="Download File" Command="{Binding DownloadFile}"/>
                 <MenuItem Header="Download Satoshi Uploaded File" Command="{Binding DownloadSatoshiUploadedFile}"/>
+                <MenuItem Header="Download TxInput File" Command="{Binding DownloadTxInputFile}"/>
             </MenuItem>
         </Menu>
 

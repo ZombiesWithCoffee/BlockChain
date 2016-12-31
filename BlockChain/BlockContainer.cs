@@ -234,7 +234,7 @@ namespace BlockChain {
             return new FileData(data.ToArray());
         }
 
-        public FileData GetInputUploadedFile(string tx) {
+        public FileData DownloadTxInputFile(string tx) {
 
             var data = new List<byte>();
 
@@ -243,7 +243,7 @@ namespace BlockChain {
             if (transaction == null)
                 return null;
 
-            var bytes = transaction.GetInputUploadedFile();
+            var bytes = transaction.DownloadTxInputFile();
 
             data.AddRange(bytes);
 

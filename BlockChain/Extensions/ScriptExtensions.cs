@@ -232,33 +232,7 @@ namespace BlockChain.Extensions {
             // Skip the header
             position += 72;
 
-            while (position < array.Length){
-                switch (array[position]){
-
-                    case Op.OP_PUSHDATA1:
-                    case Op.OP_PUSHDATA2:
-                    case Op.OP_PUSHDATA4:
-
-                        var length = array.ToLengthInt(ref position);
-
-                        if (array[position] == 0x00 && array[position + length - 1] == 0x00){
-
-                            // Ignore the first and last 00 bytes
-
-                            var data = new byte[length - 2];
-                            Buffer.BlockCopy(array, position + 1, data, 0, data.Length);
-
-                            bytes.AddRange(data);
-                        }
-
-                        position += (int)length;
-
-                        break;
-
-                    default:
-                        throw new InvalidDataException();
-                }
-            }
+            ToInput(array, position, bytes);
 
             return bytes.ToArray();
         }
@@ -273,9 +247,16 @@ namespace BlockChain.Extensions {
             // Skip the header
             position += 71;
 
-            while (position < array.Length) {
-                switch (array[position]) {
+            ToInput(array, position, bytes);
 
+            return bytes.ToArray();
+        }
+
+        static void ToInput(byte[] array, int position, List<byte> bytes){
+
+            while (position < array.Length){
+
+                switch (array[position]){
                     case Op.OP_PUSHDATA1:
                     case Op.OP_PUSHDATA2:
                     case Op.OP_PUSHDATA4:
@@ -289,22 +270,38 @@ namespace BlockChain.Extensions {
                             var data = new byte[length - 2];
                             Buffer.BlockCopy(array, position + 1, data, 0, data.Length);
 
-                            bytes.AddRange(data);
+                            // Replace all 0x00 with CRLF
+
+                            foreach (var @byte in data){
+
+                                if (@byte == 0x00){
+                                    bytes.Add((byte)'\r');
+                                    bytes.Add((byte)'\n');
+                                }
+                                else{
+                                    bytes.Add(@byte);
+                                }
+                            }
+
+                            bytes.Add((byte)'\r');
+                            bytes.Add((byte)'\n');
                         }
 
-                        position += (int)length;
+                        position += (int) length;
+
                         break;
 
-                    // 3fa9144d7b6f78537d514bc560cf4dd095219501027db8882102e1fd747026040b1cd5d2e3e3f180225963d88c44ba691e01ed3d038e482dd8bcad5d75740087
+                    // Some sort of footer
 
                     case 0x3f:
-                        position = array.Length;
-                        break;
+                        return;
+
+                    default:
+                        throw new InvalidDataException();
                 }
             }
-
-            return bytes.ToArray();
         }
+
 
 
         // Beginning 47-30-44-02-20-26

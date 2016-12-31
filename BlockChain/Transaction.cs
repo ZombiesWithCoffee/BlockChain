@@ -87,7 +87,7 @@ namespace BlockChain
             return data.GetRange(8, length).ToArray();
         }
 
-        public byte[] GetInputUploadedFile(){
+        public byte[] DownloadTxInputFile(){
 
             var data = new List<byte>();
 

@@ -100,6 +100,7 @@
     <Compile Include="Extensions\SetBindingExtension.cs" />
     <Compile Include="Messaging\MessageCollection.cs" />
     <Compile Include="Messaging\MessageType.cs" />
+    <Compile Include="Services\DownloadTxInputFile.cs" />
     <Compile Include="Services\OpenFiles.cs" />
     <Compile Include="Services\QueryAesKeys.cs" />
     <Compile Include="Services\QuerySeveralTxOuts.cs" />
