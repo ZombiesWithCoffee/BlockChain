@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using BlockChain.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace BlockChain.Test {
+
+    [TestClass]
+    public class HashTest{
+
+        [TestMethod]
+        public void RipeMd160Test() {
+
+            var input =
+                @"00646174653d313239313834373830355d3c6272202f3e3229205768656e20746865726526233033393b73206120626c6f636b2d636861696e2072656f72672c20697420776f756c64206265206561737920746f20646f75626c652d636f756e74207472616e73616374696f6e73207768656e20746865792067657420636f6e6669726d656420616761696e2e3c6272202f3e5b2f71756f74655d3c6272202f3e546865204f5026233033393b73206578616d706c65206f66206c6973747472616e73616374696f6e7320266c743b6163636f756e742667743b205b636f756e743d31305d205b747869645d207365656d7320746f20696d706c7920616e6420697420776f756c642062652076657279206561737920666f722070726f6772616d6d65727320746f20617373756d6520746861742069662074686579207061737320696e20746865206c6173742074786964206f66207468652070726576696f75732063616c6c20746f206c6973747472616e73616374696f6e732c00";
+
+            SHA256 sha256 = new SHA256Managed();
+            var hash1 = sha256.ComputeHash(input.ToByteArray());
+
+            var ripeMd160 = RIPEMD160.Create();
+
+            var result = ripeMd160.ComputeHash(hash1, 0, hash1.Length);
+
+            var test = result.ToHex();
+            //       Assert.AreEqual(script.Address, "1GhqLp4fmVH5yMp82rwcXSnsWV2E7kS1jN");
+
+            // 8144F4B1
+        }
+
+
+    }
+}

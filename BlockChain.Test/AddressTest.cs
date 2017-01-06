@@ -5,6 +5,7 @@ using BlockChain.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BlockChain.Test {
+
     [TestClass]
     public class AddressTest {
 

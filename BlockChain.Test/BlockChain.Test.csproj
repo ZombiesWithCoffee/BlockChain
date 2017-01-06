@@ -63,6 +63,7 @@
     <Content Include="Examples\Insurance.txt" />
     <Compile Include="AddressTest.cs" />
     <Compile Include="Base56DecoderTest.cs" />
+    <Compile Include="HashTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Python\Satoshi-Downloader.py" />
     <None Include="Python\Satoshi-Uploader.py" />
