@@ -107,6 +107,7 @@
     <Compile Include="Services\QueryBase64Messages.cs" />
     <Compile Include="Services\SearchByteArray.cs" />
     <Compile Include="Services\SearchWikileakHashes.cs" />
+    <Compile Include="Services\WalkTransaction.cs" />
     <Compile Include="Services\WalkHashTable.cs" />
     <Compile Include="Services\WalkDownEntireTransaction.cs" />
     <Compile Include="Services\WalkUpEntireTransaction.cs" />
