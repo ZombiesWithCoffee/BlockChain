@@ -27,6 +27,10 @@ namespace BlockChain.WPF.ViewModels {
             Messages.Clear();
         });
 
+        public ICommand Cancel => new RelayCommand(() => {
+            Messages.Cancel = true;
+        });
+
         public ICommand Exit => new RelayCommand(() => {
             Application.Current.Shutdown();
         });

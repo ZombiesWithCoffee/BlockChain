@@ -1,12 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using BlockChain.Extensions;
 using BlockChain.WPF.Messaging;
-using BlockChain.WPF.Properties;
 using Info.Blockchain.API;
-using Info.Blockchain.API.BlockExplorer;
 
 namespace BlockChain.WPF.Services {
 
@@ -26,6 +21,7 @@ namespace BlockChain.WPF.Services {
 
             _messages.NewLine();
             _messages.Add("Walking down Transactions", MessageType.Heading);
+            _messages.Cancel = false;
 
             try{
                 await SearchTransaction(txId);
@@ -34,10 +30,21 @@ namespace BlockChain.WPF.Services {
                 _messages.Add(ex.Message, MessageType.Error);
             }
 
-            _messages.Add("Search Complete", MessageType.Heading);
+            if (_messages.Cancel){
+                _messages.Add("Search Canceled", MessageType.Error);
+                _messages.Cancel = false;
+            }
+            else{
+                _messages.Add("Search Complete", MessageType.Heading);
+            }
         }
 
         async Task SearchTransaction(string txId){
+
+            if (_messages.Cancel){
+                return;
+            }
+
             var transaction = await _api.BlockExpolorer.GetTransactionAsync(txId);
 
             _messages.Add($"{transaction.Hash}");

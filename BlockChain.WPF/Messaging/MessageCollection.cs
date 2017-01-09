@@ -17,5 +17,7 @@ namespace BlockChain.WPF.Messaging {
         public void Add(string text, ImageSource imageSource) {
             Add(new Message(text, imageSource));
         }
+
+        public bool Cancel { get; set; }
     }
 }

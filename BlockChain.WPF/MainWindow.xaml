@@ -91,6 +91,8 @@
                 <MenuItem Header="Excessive TxOuts" Command="{Binding QuerySeveralTxOutsFile}"/>
                 <MenuItem Header="Base64 Messages" Command="{Binding QueryBase64}"/>
                 <MenuItem Header="Wikileaks Hash Account" Command="{Binding WalkHashTable}"/>
+                <Separator/>
+                <MenuItem Header="Cancel Query" Command="{Binding Cancel}"/>
             </MenuItem>
 
             <MenuItem Header="_Download">
