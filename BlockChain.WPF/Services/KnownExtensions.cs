@@ -22,8 +22,7 @@ namespace BlockChain.WPF.Services {
 
         public async Task Search(int start, int stop){
 
-            _messages.NewLine();
-            _messages.Add("Searching for Known Extensions", MessageType.Heading);
+            _messages.AddHeading("Searching for Known Extensions");
 
             for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
 
@@ -39,7 +38,14 @@ namespace BlockChain.WPF.Services {
                 await Blocks.Add(fileName);
 
                 foreach (var block in Blocks) {
-                    foreach (var transaction in block.Transactions){
+
+                    if (_messages.Cancel)
+                        break;
+
+                    foreach (var transaction in block.Transactions)
+                    {
+                        if (_messages.Cancel)
+                            break;
 
                         var fileData = Blocks.GetFile(transaction.ToString());
 
@@ -81,7 +87,7 @@ namespace BlockChain.WPF.Services {
                 }
             }
 
-            _messages.Add("Search Complete", MessageType.Heading);
+            _messages.AddCompletion();
         }
 
         static readonly ImageConverter ImageConverter = new ImageConverter();

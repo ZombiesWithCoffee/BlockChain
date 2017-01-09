@@ -19,5 +19,21 @@ namespace BlockChain.WPF.Messaging {
         }
 
         public bool Cancel { get; set; }
+
+        public void AddHeading(string text){
+            NewLine();
+            Add("Walking down Transactions", MessageType.Heading);
+            Cancel = false;
+        }
+
+        public void AddCompletion(){
+            if (Cancel){
+                Add("Search Canceled", MessageType.Error);
+                Cancel = false;
+            }
+            else{
+                Add("Search Complete", MessageType.Heading);
+            }
+        }
     }
 }

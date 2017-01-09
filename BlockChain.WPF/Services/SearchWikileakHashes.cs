@@ -20,10 +20,12 @@ namespace BlockChain.WPF.Services {
 
         public async Task Search(int start, int stop) {
 
-            _messages.NewLine();
-            _messages.Add("Finding Wikileak Hashes stored in the BlockChain", MessageType.Heading);
+            _messages.AddHeading("Finding Wikileak Hashes stored in the BlockChain");
 
-            for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
+            for (var blockNumber = start; blockNumber <= stop; blockNumber++){
+
+                if (_messages.Cancel)
+                    break;
 
                 var fileName = Path.Combine(Settings.Default.InputPath, $"blk{blockNumber:D5}.dat");
 
@@ -38,7 +40,7 @@ namespace BlockChain.WPF.Services {
                 SearchTransaction();
             }
 
-            _messages.Add("Search Complete", MessageType.Heading);
+            _messages.AddCompletion();
         }
 
         void SearchTransaction(){
@@ -54,6 +56,9 @@ namespace BlockChain.WPF.Services {
 
                         foreach (var txOut in transaction.Outs){
 
+                            if (_messages.Cancel)
+                                return;
+
                             // if (!txOut.Script.Inner.SequenceEqual(hash.RipeMd160))
 
                             if (txOut.Script.Inner.Search(hash.RipeMd160) != null){
@@ -65,6 +70,9 @@ namespace BlockChain.WPF.Services {
                         }
 
                         foreach (var txIn in transaction.Ins) {
+
+                            if (_messages.Cancel)
+                                return;
 
                             if (txIn.Script.Inner.Search(hash.RipeMd160) != null) {
                                 _messages.Add($"Wikileaks Hash Found: {hash.Description}", MessageType.Error);

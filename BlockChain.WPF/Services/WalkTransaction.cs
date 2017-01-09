@@ -19,9 +19,7 @@ namespace BlockChain.WPF.Services {
 
             txId = txId.Trim(' ', '\r', '\n');
 
-            _messages.NewLine();
-            _messages.Add("Walking down Transactions", MessageType.Heading);
-            _messages.Cancel = false;
+            _messages.AddHeading("Walking down Transactions");
 
             try{
                 await SearchTransaction(txId);
@@ -30,13 +28,7 @@ namespace BlockChain.WPF.Services {
                 _messages.Add(ex.Message, MessageType.Error);
             }
 
-            if (_messages.Cancel){
-                _messages.Add("Search Canceled", MessageType.Error);
-                _messages.Cancel = false;
-            }
-            else{
-                _messages.Add("Search Complete", MessageType.Heading);
-            }
+            _messages.AddCompletion();
         }
 
         async Task SearchTransaction(string txId){

@@ -20,12 +20,14 @@ namespace BlockChain.WPF.Services {
 
             byteText = byteText.Trim(' ', '\r', '\n');
 
-            _messages.NewLine();
-            _messages.Add($"Searching For Byte Array {byteText}", MessageType.Heading);
+            _messages.AddHeading($"Searching For Byte Array {byteText}");
 
             var bytes = byteText.ToByteArray();
 
-            for (var blockNumber = start; blockNumber <= stop; blockNumber++) {
+            for (var blockNumber = start; blockNumber <= stop; blockNumber++)
+            {
+                if (_messages.Cancel)
+                    break;
 
                 var fileName = Path.Combine(Settings.Default.InputPath, $"blk{blockNumber:D5}.dat");
 
@@ -43,10 +45,13 @@ namespace BlockChain.WPF.Services {
                 }
             }
 
-            _messages.Add($"Search Complete", MessageType.Heading);
+            _messages.AddCompletion();
         }
 
         void SearchTransaction(Transaction transaction, byte[] bytes) {
+
+            if (_messages.Cancel)
+                return;
 
             var outputBytes = transaction.Outs.GetFileBytes();
 

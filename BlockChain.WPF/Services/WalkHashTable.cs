@@ -1,9 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using BlockChain.Extensions;
 using BlockChain.WPF.Messaging;
-using BlockChain.WPF.Properties;
 using Info.Blockchain.API;
 
 namespace BlockChain.WPF.Services {
@@ -16,14 +14,13 @@ namespace BlockChain.WPF.Services {
         }
 
         readonly MessageCollection _messages;
-        private readonly BlockchainApiHelper _api;
+        readonly BlockchainApiHelper _api;
 
         public async Task Search(string txId){
 
             txId = txId.Trim(' ', '\r', '\n');
 
-            _messages.NewLine();
-            _messages.Add("Finding Transactions in Wikileaks Hash Trailer", MessageType.Heading);
+            _messages.AddHeading("Finding Transactions in Wikileaks Hash Trailer");
 
             try{
                 await SearchTransaction(txId);
@@ -32,10 +29,14 @@ namespace BlockChain.WPF.Services {
                 _messages.Add(ex.Message, MessageType.Error);
             }
 
-            _messages.Add("Search Complete", MessageType.Heading);
+            _messages.AddCompletion();
         }
 
         async Task SearchTransaction(string txId){
+
+            if (_messages.Cancel)
+                return;
+
             var transaction = await _api.BlockExpolorer.GetTransactionAsync(txId);
 
             if (transaction.Outputs.Count > 2){
