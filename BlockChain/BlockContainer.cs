@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using BlockChain.Enums;
 using BlockChain.Extensions;
@@ -246,6 +248,38 @@ namespace BlockChain {
             var bytes = transaction.DownloadTxInputFile();
 
             data.AddRange(bytes);
+
+            return new FileData(data.ToArray());
+        }
+
+        public FileData DownloadStrangeFile(string tx)
+        {
+            var data = new List<byte>();
+
+            var transaction = this[tx];
+
+            if (transaction == null)
+                return null;
+
+            foreach (var txOut in transaction.Outs)
+            {
+                if (txOut.TxIn == null)
+                {
+                    Debug.WriteLine($"{txOut} missing TxIn");
+                    continue;
+                }
+
+                var txIn = txOut.TxIn;
+
+                foreach (var innerOut in txIn.Transaction.Outs)
+                {
+                    if (innerOut.Value == BitcoinValue.Zero)
+                    {
+                        Debug.WriteLine($"{txIn.PreviousOutput.N:D3} {innerOut.Script}");
+                    }
+                }
+
+            }
 
             return new FileData(data.ToArray());
         }

@@ -85,6 +85,9 @@
     <Compile Include="Dialogs\ByteArrayDialog.xaml.cs">
       <DependentUpon>ByteArrayDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\OpenAddressDialog.xaml.cs">
+      <DependentUpon>OpenAddressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SearchTransaction.xaml.cs">
       <DependentUpon>SearchTransaction.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,7 @@
     <Compile Include="Services\QueryBase64Messages.cs" />
     <Compile Include="Services\SearchByteArray.cs" />
     <Compile Include="Services\SearchWikileakHashes.cs" />
+    <Compile Include="Services\DownloadStrange.cs" />
     <Compile Include="Services\WalkTransaction.cs" />
     <Compile Include="Services\WalkHashTable.cs" />
     <Compile Include="Services\WalkDownEntireTransaction.cs" />
@@ -123,12 +127,17 @@
     <Compile Include="Services\KnownExtensions.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Messaging\Message.cs" />
+    <Compile Include="ViewModels\OpenAddressViewModel.cs" />
     <Compile Include="ViewModels\SearchByteArrayViewModel.cs" />
     <Compile Include="ViewModels\SearchTransactionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\OpenBlocksViewModel.cs" />
     <Compile Include="ViewModels\OpenTransactionsViewModel.cs" />
     <Page Include="Dialogs\ByteArrayDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\OpenAddressDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

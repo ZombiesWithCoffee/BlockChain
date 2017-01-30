@@ -165,6 +165,29 @@ namespace BlockChain.WPF.ViewModels {
             }
         });
 
+        public ICommand DownloadStrange => new RelayCommand(() => {
+
+            var openTransactionDialog = new OpenTransactionsDialog();
+
+            if (openTransactionDialog.ShowDialog() == false)
+                return;
+
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                new DownloadStrange(Blocks,Messages).Download(openTransactionDialog.ViewModel.Transaction);
+            }
+            catch (InvalidDataException ex)
+            {
+                Messages.Add(ex.Message, MessageType.Error);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+        });
+
         public ICommand SearchForKnownExtensions => new RelayCommand(async() => {
 
             var openBlocksDialog = new OpenBlocksDialog();

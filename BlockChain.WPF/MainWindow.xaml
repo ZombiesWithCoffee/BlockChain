@@ -99,6 +99,7 @@
                 <MenuItem Header="Download File" Command="{Binding DownloadFile}"/>
                 <MenuItem Header="Download Satoshi Uploaded File" Command="{Binding DownloadSatoshiUploadedFile}"/>
                 <MenuItem Header="Download TxInput File" Command="{Binding DownloadTxInputFile}"/>
+                <MenuItem Header="Download Strange Transaction" Command="{Binding DownloadStrange}"/>
             </MenuItem>
         </Menu>
 
