@@ -13,7 +13,7 @@ namespace BlockChain.AesKeyFind {
         }
 
         // Set byte n of vector to val.
-        public static UInt32 set_byte(UInt32 vector, int n, byte val) {
+        public static UInt32 Set(UInt32 vector, int n, byte val) {
             return (UInt32)((vector & ~(0xFF << (8 * n))) | (val << (8 * n)));
         }
 

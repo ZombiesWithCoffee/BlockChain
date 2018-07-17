@@ -44,15 +44,15 @@ namespace BlockChain.AesKeyFind {
         public static UInt32 key_core(UInt32 k, int i) {
             UInt32 t = 0;
             for (int j = 0; j < 4; j++)
-                t = Util.set_byte(t, (j - 1) % 4, sbox[Util.get_byte(k, j)]);
-            return Util.set_byte(t, 0, (byte)(Util.get_byte(t, 0) ^ rcon[i]));
+                t = Util.Set(t, (j - 1) % 4, sbox[Util.get_byte(k, j)]);
+            return Util.Set(t, 0, (byte)(Util.get_byte(t, 0) ^ rcon[i]));
         }
 
         // Run each byte of a word through the sbox separately for word 4 of 256-bit AES.
         public static UInt32 sbox_bytes(UInt32 k) {
             UInt32 r = 0;
             for (int j = 0; j < 4; j++)
-                r = Util.set_byte(r, j, sbox[Util.get_byte(k, j)]);
+                r = Util.Set(r, j, sbox[Util.get_byte(k, j)]);
             return r;
         }
     }
